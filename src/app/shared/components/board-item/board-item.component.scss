@@ -1,0 +1,23 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    height: 20rem;
+    background-color: #ebf1fa;
+    color: #8c9094;
+    border-radius: 1rem;
+    justify-content: space-around;
+    padding: 1rem;
+    cursor: pointer;
+    border-color: #fff;
+    // box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+    box-shadow: -9px -8px 23px 0px white, 8px 1px 10px 0px grey;
+    &:hover{
+        background-color: #c4d7dc;
+        transition: background-color 0.5s ease;
+    }
+    &:active{
+        background-color: #c49bfa;
+        transition: background-color 0.5s ease;
+    }
+}

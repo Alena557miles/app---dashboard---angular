@@ -1,0 +1,57 @@
+.board-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .board-item{
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        
+        .block-title{
+            text-transform: uppercase;
+            text-align: center;
+            margin: 2rem 0;
+            color: #5a5d61;
+        }
+
+        .block{
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            background-color: #ebf1fa;
+            color: #8c9094;
+            border-radius: 1rem;
+            padding: 1rem;
+            border-color: #fff;
+            box-shadow: -9px -8px 23px 0px white, 8px 1px 10px 0px grey;
+
+            .add-task-btn{
+                display: block;
+                height: 3rem;
+                background: #d1e0ee;
+                
+                &:hover{
+                    background: #8a9095;
+                    transition: background 0.5s ease;
+                }
+            }
+    
+            .task{
+                background:#dfe7ee;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                height: 5rem;
+                padding: 0 1rem;
+                cursor: pointer;
+    
+                .task-btns{
+                    display: flex;
+                    flex-direction: row;                
+                }
+            }
+        }
+    }
+}
