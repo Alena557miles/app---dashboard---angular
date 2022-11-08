@@ -7,6 +7,10 @@ import { MainLayoutComponent } from './shared/components/main-layout/main-layout
 import { BoardItemComponent } from './shared/components/board-item/board-item.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { BoardPageComponent } from './board-page/board-page.component';
+import { ModalBoardComponent } from './shared/components/modal-board/modal-board.component';
+import { CreateBoardComponent } from './create-board/create-board.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -14,11 +18,15 @@ import { BoardPageComponent } from './board-page/board-page.component';
     MainLayoutComponent,
     BoardItemComponent,
     DashboardPageComponent,
-    BoardPageComponent
+    BoardPageComponent,
+    ModalBoardComponent,
+    CreateBoardComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

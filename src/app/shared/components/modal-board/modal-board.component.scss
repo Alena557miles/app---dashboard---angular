@@ -1,0 +1,26 @@
+.overflow{
+    background:#a4b0b375;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+$modal-width:500px;
+.modal{
+    width: 500px;
+    background: white;
+    position: absolute;
+    padding: 60px;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: calc(50% - #{$modal-width/2});
+    border-radius: 1.4rem;
+
+
+    .modal-title{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+    
