@@ -3,7 +3,10 @@
     <div class="board-item">
         <h3 class="block-title">todo</h3>
         <div class="block">
-            <button class="add-task-btn btn">+</button>
+            <button 
+            class="add-task-btn btn"
+            (click)="modalService.open()"
+            >+</button>
             <div class="task">
                 <h3 class="task-title">Name</h3>  
                 <div class="task-btns">
@@ -33,7 +36,10 @@
     <div class="board-item">
         <h3 class="block-title">in progress</h3>
         <div class="block">
-            <button class="add-task-btn btn">+</button>
+            <button 
+            class="add-task-btn btn"
+            (click)="modalService.open()"
+            >+</button>
             <div class="task">
                 <h3 class="task-title">Name</h3>  
                 <div class="task-btns">
@@ -77,17 +83,26 @@
         </div>
     </div>
     <div class="board-item">
-    <h3 class="block-title">done</h3>
-    <div class="block">
-        <button class="add-task-btn btn">+</button>
-        <div class="task">
-            <h3 class="task-title">Name</h3>  
-            <div class="task-btns">
-                <button class="edit-btn btn">&#9998;</button>
-                <button class="delete-btn btn">&#8864;</button>
-                <button class="archive-btn btn">&#9972;</button>
-            </div> 
+        <h3 class="block-title">done</h3>
+        <div class="block">
+            <button 
+            class="add-task-btn btn"
+            (click)="modalService.open()"
+            >+</button>
+            <div class="task">
+                <h3 class="task-title">Name</h3>  
+                <div class="task-btns">
+                    <button class="edit-btn btn">&#9998;</button>
+                    <button class="delete-btn btn">&#8864;</button>
+                    <button class="archive-btn btn">&#9972;</button>
+                </div> 
+            </div>
         </div>
     </div>
 </div>
-</div>
+
+<app-modal-board 
+title="Create board"
+*ngIf="modalService.isVisiBle$ | async">
+    <app-create-board></app-create-board>
+</app-modal-board>

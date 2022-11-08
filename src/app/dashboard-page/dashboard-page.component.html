@@ -4,16 +4,17 @@
         class="btn btn-dashboard"
         (click)="modalService.open()">+</button>
     </div>
+    <app-modal-board 
+    title="Create board"
+    *ngIf="modalService.isVisiBle$ | async">
+        <app-create-board></app-create-board>
+    </app-modal-board>
+    
     <app-board-item></app-board-item>
     <app-board-item></app-board-item>
     <app-board-item></app-board-item>
     <app-board-item></app-board-item>
     <app-board-item></app-board-item>
     <app-board-item></app-board-item>
-    <!-- <app-board-item></app-board-item> -->
-    <!-- <app-board-item></app-board-item>
-    <app-board-item></app-board-item>
-    <app-board-item></app-board-item>
-    <app-board-item></app-board-item>
-    <app-board-item></app-board-item> -->
+
 </div>

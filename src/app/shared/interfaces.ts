@@ -4,3 +4,9 @@ export interface Board{
     author?: string
     date: Date
 }
+
+export interface Task{
+    id?: string
+    name: string
+    author?: string
+}

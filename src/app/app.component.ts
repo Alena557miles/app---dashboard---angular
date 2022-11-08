@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ModalService } from './services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,4 @@ import { ModalService } from './services/modal.service';
 })
 export class AppComponent {
   title = 'taskboard';
-  constructor(public modalService: ModalService) { }
 }
