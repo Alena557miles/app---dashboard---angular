@@ -2,11 +2,11 @@
     <h1>Angular Admin</h1>
     <nav>
         <ul class="nav">
-            <li routerLinkActive="active">
-                <a [routerLink]="['/admin','dashboard']">Home-Admin</a>
+            <li >
+                <a routerLinkActive="active" [routerLink]="['/admin','dashboard']">Home-Admin</a>
             </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/admin','board','145']">Some board</a>
+            <li >
+                <a routerLinkActive="active" [routerLink]="['/admin','board','145']">Some board</a>
             </li>
             <li><a href="#" (click)="logout($event)">Logout</a></li>
         </ul>
