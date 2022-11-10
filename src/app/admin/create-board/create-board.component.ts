@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Board } from '../shared/interfaces';
+import { Board } from '../../shared/interfaces';
 
 
 @Component({

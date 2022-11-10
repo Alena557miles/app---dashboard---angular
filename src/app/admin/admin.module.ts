@@ -1,6 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { ModalBoardComponent } from "../shared/components/modal-board/modal-board.component";
+import { CreateBoardComponent } from "./create-board/create-board.component";
 import { DashboardPageComponent } from "./dashboard-page/dashboard-page.component";
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { AdminLayoutComponent } from "./shared/components/admin-layout/admin-layout.component";
@@ -9,10 +12,13 @@ import { AdminLayoutComponent } from "./shared/components/admin-layout/admin-lay
     declarations:[
         AdminLayoutComponent,
         LoginPageComponent,
-        DashboardPageComponent
+        DashboardPageComponent,
+        CreateBoardComponent,
     ],
     imports:[
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
         RouterModule.forChild([
             {
                 path:'', component:AdminLayoutComponent,children:[
