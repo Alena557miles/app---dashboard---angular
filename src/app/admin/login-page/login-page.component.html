@@ -1,25 +1,35 @@
 <p>login-page works!</p>
-<form class="form">
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
     <h2>Log in</h2>
-    <div class="form-control">
+
+    <div 
+    class="form-control">
+    <!--     [ngClass]="{invalid: form.get("email").touched && form.get("email").invalid}" -->
         <label for="email">Email</label>
-        <input type="email">
+        <input type="email" formControlName="email">
     </div>
-    <div class="validation">
+
+    <div 
+    class="validation"
+    *ngIf="form.get('email')?.touched && form.get('email')?.invalid" 
+    >
         <small> error </small>
     </div>
 
 
     <div class="form-control">
         <label for="password">Password</label>
-        <input type="password">
+        <input type="password" formControlName="password">
     </div>
-    <div class="validation">
+    <div 
+    class="validation"
+    *ngIf="form.get('password')?.touched && form.get('password')?.invalid" >
         <small> error </small>
     </div>
 
     <button 
     type="submit"
     class="btn form-btn"
+    [disabled]="form.invalid"
     > Log in</button>
 </form>

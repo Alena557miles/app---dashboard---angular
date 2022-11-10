@@ -14,7 +14,7 @@ $modal-width:500px;
     padding: 60px;
     top: 50%;
     transform: translate(0, -50%);
-    left: calc(50% - #{$modal-width/2});
+    left: calc(50% - calc($modal-width / 2));
     border-radius: 1.4rem;
 
 
