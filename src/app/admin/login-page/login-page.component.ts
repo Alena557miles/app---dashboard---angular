@@ -42,8 +42,7 @@ export class LoginPageComponent implements OnInit {
       returnSecureToken: false
     }
     this.form.disable()
-    this.auth.login(user).subscribe((response) => {
-      console.log(response)
+    this.auth.login(user).subscribe(() => {
       this.form.reset()
       this.router.navigate(['/admin','dashboard'])
     })

@@ -20,7 +20,15 @@ export class AuthService{
         user.returnSecureToken = true
         return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
         .pipe(
-            tap(this.setToken)
+            tap({
+                next: val => {
+                  this.setToken(val)
+                },
+                error: error => {
+                  console.log('on error', error.message);
+                },
+                complete: () => console.log('on complete')
+              })
         )
     }
     logout(){
@@ -29,7 +37,7 @@ export class AuthService{
     isAuthentificated(): boolean{
         return !!this.token
     }
-    private setToken(response: FbAuthResponse | null){
+    private setToken(response: FbAuthResponse | any){
         if (response){
         const expDate = new Date(new Date().getTime() + +response.expiresIn * 1000)
         localStorage.setItem('fb-token', JSON.stringify(response.idToken))
