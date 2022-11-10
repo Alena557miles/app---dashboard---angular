@@ -11,3 +11,8 @@ export interface Task{
     name: string
     author?: string
 }
+
+export interface User {
+    email: string,
+    password: string
+}

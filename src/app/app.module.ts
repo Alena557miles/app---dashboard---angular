@@ -9,6 +9,7 @@ import { BoardItemComponent } from './shared/components/board-item/board-item.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { BoardPageComponent } from './board-page/board-page.component';
+import { SharedModule } from './shared/components/shared.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { BoardPageComponent } from './board-page/board-page.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

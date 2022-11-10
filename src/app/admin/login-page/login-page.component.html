@@ -3,33 +3,52 @@
     <h2>Log in</h2>
 
     <div 
-    class="form-control">
-    <!--     [ngClass]="{invalid: form.get("email").touched && form.get("email").invalid}" -->
+    class="form-control"
+    [ngClass]="{'invalid': form.get('email')?.touched && form.get('email')?.invalid }">
         <label for="email">Email</label>
-        <input type="email" formControlName="email">
+        <input type="email" placeholder="e-mail" formControlName="email">
     </div>
 
     <div 
     class="validation"
     *ngIf="form.get('email')?.touched && form.get('email')?.invalid" 
     >
-        <small> error </small>
+        <small
+        *ngIf="form.get('email')?.errors?.['required']"
+        > Enter your e-mail </small>
+
+        <small
+        *ngIf="form.get('email')?.errors?.['email']"
+        > Enter your e-mail </small>
     </div>
 
 
-    <div class="form-control">
+    <div class="form-control"
+    [ngClass]="{'invalid': form.get('password')?.touched && form.get('password')?.invalid }">
         <label for="password">Password</label>
-        <input type="password" formControlName="password">
+        <input type="password" placeholder="password" formControlName="password">
     </div>
     <div 
     class="validation"
     *ngIf="form.get('password')?.touched && form.get('password')?.invalid" >
-        <small> error </small>
+
+        <small
+        *ngIf="form.get('password')?.errors?.['required']"
+        > Enter the password</small>
+
+        <small
+        *ngIf="form.get('password')?.errors?.['minlength']"
+        > The password must be at least 
+        {{form.get('password')?.errors?.minlength.requiredLength}}
+        characters long. Now it is 
+        {{form.get('password')?.errors?.minlength.actualLength}}
+    </small>
+
     </div>
 
     <button 
     type="submit"
     class="btn form-btn"
-    [disabled]="form.invalid"
+    [disabled]="!form.valid"
     > Log in</button>
 </form>
