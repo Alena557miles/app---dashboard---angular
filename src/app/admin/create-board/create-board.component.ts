@@ -12,9 +12,9 @@ export class CreateBoardComponent implements OnInit {
 
   form: FormGroup;
 
-  get title(){
-    return this.form.controls.title as FormControl
-  }
+  // get title(){
+  //   return this.form.controls.title as FormControl
+  // }
 
   constructor() { }
 
@@ -26,6 +26,7 @@ export class CreateBoardComponent implements OnInit {
       ]),
       description: new FormControl<string>('',[
         Validators.required,
+        Validators.minLength(7)
       ])
     })
   }

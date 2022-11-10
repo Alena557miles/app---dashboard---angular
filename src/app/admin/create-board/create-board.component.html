@@ -9,6 +9,15 @@
         placeholder="board name"
         >
     </div>
+
+    <small
+    class="error"
+    *ngIf="form.get('title')?.errors?.minlength && form.get('title')?.touched"
+    >   Please fill title field width min length
+    {{form.get('title')?.errors?.minlength.requiredLength}}
+    . Now  {{form.get('title')?.errors?.minlength.actualLength}}
+    </small>
+
     <div class="form-control">
         <label for="description"></label>
         <input 
@@ -18,20 +27,18 @@
         placeholder="description"
         >
     </div>
+
     <small
     class="error"
-    *ngIf="title.errors?.minlength && title.touched"
-    >Please fill title field width min length. Now {{ title.value.length }}
+    *ngIf="form.get('description')?.errors?.minlength && form.get('description')?.touched"
+    >   Please fill description field width min length
+    {{form.get('description')?.errors?.minlength.requiredLength}}
+    . Now  {{form.get('description')?.errors?.minlength.actualLength}}
     </small>
-    <button
-    type="submit"
-    class="btn modal-btn"
 
-    >Create board</button>
-<!-- 
     <button
     type="submit"
     class="btn modal-btn"
     [disabled]="form.invalid"
-    >Create board</button> -->
+    >Create board</button>
 </form>
