@@ -23,19 +23,19 @@ export class AuthService{
         user.returnSecureToken = true
         return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
         .pipe(
-            // tap(this.setToken.bind(this)),
-            // catchError(this.handleError.bind(this))
+            tap(this.setToken.bind(this)),
+            catchError(this.handleError.bind(this))
 
 
-            tap({
-                next: val => {
-                this.setToken(val)
-                },
-                error: error => {
-                    this.handleError(error)
-                },
-                complete: () => console.log('on complete')
-              })
+            // tap({
+            //     next: val => {
+            //     this.setToken(val)
+            //     },
+            //     error: error => {
+            //         this.handleError(error)
+            //     },
+            //     complete: () => console.log('on complete')
+            //   })
 
 
 
@@ -48,21 +48,19 @@ export class AuthService{
         return !!this.token
     }
     private handleError(error: HttpErrorResponse){
-        const {messege} = error.error.error
-        console.log(messege)
-        // switch (messege){
-        //     case 'INALID_EMAIL':
-        //         this.error$.next('Invalid e-mail')
-        //         break
-        //     case 'INVALID_PASSWORD':
-        //         this.error$.next('Invalid password')
-        //         break
-        //     case 'EMAIL_NOT_FOUND':
-        //         this.error$.next('E-mail not found')
-        //         break
-        // }
+        const messege = error.error.error.message
+         switch (messege){
+            case 'INALID_EMAIL':
+                this.error$.next('Invalid e-mail')
+                break
+            case 'INVALID_PASSWORD':
+                this.error$.next('Invalid password')
+                break
+            case 'EMAIL_NOT_FOUND':
+                this.error$.next('E-mail not found')
+                break
+        }
         return throwError(() => error)
-
     }
     private setToken(response: FbAuthResponse | any){
         if (response){
