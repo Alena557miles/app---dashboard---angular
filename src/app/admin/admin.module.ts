@@ -13,6 +13,7 @@ import { BoardPageComponent } from "./board-page/board-page.component";
 import { CreateTaskComponent } from "./create-task/create-task.component";
 import { AuthService } from "./shared/services/auth.service";
 import { SharedModule } from "../shared/components/shared.module";
+import { AuthGuard } from "./shared/services/auth.guard";
 
 
 
@@ -37,15 +38,15 @@ import { SharedModule } from "../shared/components/shared.module";
                 path:'', component:AdminLayoutComponent,children:[
                     {path:'', redirectTo:'/admin/login', pathMatch:'full'},
                     {path:'login', component: LoginPageComponent},
-                    {path:'dashboard', component: DashboardPageComponent},
-                    {path:'board/:id', component: BoardPageComponent}
+                    {path:'dashboard', component: DashboardPageComponent, canActivate:[AuthGuard]},
+                    {path:'board/:id', component: BoardPageComponent, canActivate:[AuthGuard]}
 
                 ]
             }
         ])
     ],
     exports: [RouterModule],
-    providers: [AuthService]
+    providers: [AuthService, AuthGuard]
 
 })
 export class AdminModule{

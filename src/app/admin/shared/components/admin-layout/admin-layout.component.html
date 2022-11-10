@@ -1,7 +1,9 @@
 <header class="header">
     <h1>Angular Admin</h1>
     <nav>
-        <ul class="nav">
+        <ul 
+        *ngIf="auth.isAuthentificated()"
+        class="nav">
             <li >
                 <a routerLinkActive="active" [routerLink]="['/admin','dashboard']">Home-Admin</a>
             </li>
