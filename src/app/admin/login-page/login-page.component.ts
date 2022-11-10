@@ -14,7 +14,7 @@ export class LoginPageComponent implements OnInit {
   form: FormGroup
   
   constructor(
-    private auth:AuthService,
+    private auth: AuthService,
     private router: Router
     ) {}
 
@@ -38,12 +38,14 @@ export class LoginPageComponent implements OnInit {
     }
     const user : User = {
       email : this.form.value.email,
-      password : this.form.value.password
+      password : this.form.value.password,
+      returnSecureToken: false
     }
-    this.auth.login(user).subscribe(() => {
+    this.form.disable()
+    this.auth.login(user).subscribe((response) => {
+      console.log(response)
       this.form.reset()
       this.router.navigate(['/admin','dashboard'])
     })
   }
-
 }
