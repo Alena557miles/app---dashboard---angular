@@ -1,28 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Board } from '../shared/interfaces';
-
+import { Task } from '../../shared/interfaces';
 
 @Component({
-  selector: 'app-create-board',
-  templateUrl: './create-board.component.html',
-  styleUrls: ['./create-board.component.scss']
+  selector: 'app-create-task',
+  templateUrl: './create-task.component.html',
+  styleUrls: ['./create-task.component.scss']
 })
-export class CreateBoardComponent implements OnInit {
+export class CreateTaskComponent implements OnInit {
 
   form: FormGroup;
-
+  
   get title(){
     return this.form.controls.title as FormControl
   }
-
   constructor() { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
       title: new FormControl<string>('',[
         Validators.required,
-        Validators.minLength(4)
+        Validators.minLength(2)
       ])
     })
   }
@@ -31,9 +29,9 @@ export class CreateBoardComponent implements OnInit {
     if (this.form.invalid){
       return
     }
-    const board: Board = {
-      name: this.form.value.title,
-      date: new Date(),
+    console.log(this.form.value.title)
+    const board: Task = {
+      name: this.form.value.title
     }
   }
 }
