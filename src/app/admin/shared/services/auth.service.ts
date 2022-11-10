@@ -25,20 +25,6 @@ export class AuthService{
         .pipe(
             tap(this.setToken.bind(this)),
             catchError(this.handleError.bind(this))
-
-
-            // tap({
-            //     next: val => {
-            //     this.setToken(val)
-            //     },
-            //     error: error => {
-            //         this.handleError(error)
-            //     },
-            //     complete: () => console.log('on complete')
-            //   })
-
-
-
         )
     }
     logout(){

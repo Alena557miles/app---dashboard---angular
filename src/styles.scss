@@ -82,3 +82,15 @@ a {
     border-radius: 0.5rem;
     background: #d1e0ee;
 }
+.alert, .alert-danger{
+	background: azure;
+    height: 2rem;
+    text-align: center;
+    display: block;
+    line-height: 2rem;
+    color: brown;
+    text-transform: uppercase;
+}
+small{
+	color: brown;
+}

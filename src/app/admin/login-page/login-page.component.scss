@@ -9,6 +9,10 @@ form{
     display: flex;
     flex-direction: column;
     padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 0.8rem;
 
 
    .form-control{
@@ -30,5 +34,6 @@ form{
     .validation{
         margin-bottom: 1.4rem;
     }
+
     
 }
