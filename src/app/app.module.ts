@@ -5,10 +5,10 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 
 import { BoardItemComponent } from './shared/components/board-item/board-item.component';
-import { BoardPageComponent } from './admin/board-page/board-page.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
+import { BoardPageComponent } from './board-page/board-page.component';
 
 
 @NgModule({
@@ -16,8 +16,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     AppComponent,
     MainLayoutComponent,
     BoardItemComponent,
-    BoardPageComponent,
     HomePageComponent,
+    BoardPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,8 @@ import { DashboardPageComponent } from "./dashboard-page/dashboard-page.componen
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { AdminLayoutComponent } from "./shared/components/admin-layout/admin-layout.component";
 import { BoardItemComponent } from "./shared/components/board-item/board-item.component";
+import { BoardPageComponent } from "./board-page/board-page.component";
+import { CreateTaskComponent } from "./create-task/create-task.component";
 
 @NgModule({
     declarations:[
@@ -15,6 +17,8 @@ import { BoardItemComponent } from "./shared/components/board-item/board-item.co
         LoginPageComponent,
         DashboardPageComponent,
         CreateBoardComponent,
+        CreateTaskComponent,
+        BoardPageComponent,
         ModalBoardComponent,
         BoardItemComponent,
     ],
@@ -27,7 +31,8 @@ import { BoardItemComponent } from "./shared/components/board-item/board-item.co
                 path:'', component:AdminLayoutComponent,children:[
                     {path:'', redirectTo:'/admin/login', pathMatch:'full'},
                     {path:'login', component: LoginPageComponent},
-                    {path:'dashboard', component: DashboardPageComponent}
+                    {path:'dashboard', component: DashboardPageComponent},
+                    {path:'board/:id', component: BoardPageComponent}
 
                 ]
             }

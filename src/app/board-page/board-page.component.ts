@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalService } from 'src/app/services/modal.service';
 
 
 @Component({
@@ -9,7 +8,7 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class BoardPageComponent implements OnInit {
 
-  constructor(public modalService: ModalService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
