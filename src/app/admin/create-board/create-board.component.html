@@ -9,6 +9,15 @@
         placeholder="board name"
         >
     </div>
+    <div class="form-control">
+        <label for="description"></label>
+        <input 
+        id="description" 
+        type="text" 
+        formControlName="description" 
+        placeholder="description"
+        >
+    </div>
     <small
     class="error"
     *ngIf="title.errors?.minlength && title.touched"

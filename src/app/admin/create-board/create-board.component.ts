@@ -23,6 +23,9 @@ export class CreateBoardComponent implements OnInit {
       title: new FormControl<string>('',[
         Validators.required,
         Validators.minLength(4)
+      ]),
+      description: new FormControl<string>('',[
+        Validators.required,
       ])
     })
   }
@@ -33,7 +36,9 @@ export class CreateBoardComponent implements OnInit {
     }
     const board: Board = {
       name: this.form.value.title,
+      description: this.form.value.description,
       date: new Date(),
     }
+    console.log(board)
   }
 }
