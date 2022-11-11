@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ModalService } from 'src/app/services/modal.service';
 import { BoardService } from 'src/app/shared/board.service';
 import { Board } from '../../shared/interfaces';
 
@@ -13,7 +14,10 @@ export class CreateBoardComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private boardService: BoardService) { }
+  constructor(
+    private boardService: BoardService,
+    private modalService: ModalService,
+    ) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -39,6 +43,7 @@ export class CreateBoardComponent implements OnInit {
     }
     this.boardService.create(board).subscribe( () => {
       this.form.reset()
+      this.modalService.close()
     })
   }
 }

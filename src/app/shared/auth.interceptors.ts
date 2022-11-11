@@ -17,10 +17,14 @@ export class AuthInterceptor implements HttpInterceptor{
         if (this.auth.isAuthentificated()){
             if (this.auth.token){
                 req = req.clone({
+                    setHeaders:{
+                        auth: this.auth.token
+                    },
                     setParams:{
                         auth: this.auth.token
                     }
                 })
+                console.log(req)
             }
         }
         return next.handle(req)

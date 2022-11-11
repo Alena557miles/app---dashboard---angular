@@ -6,6 +6,24 @@
         (click)="modalService.open()">+</button>
     </div>
 
+
+    <div class="card"
+    *ngIf="let board of boards">
+        <div class="card-header">
+            <h2>{{ board }}</h2>   
+            <p>Description</p>
+            <small>04/11/2022</small>
+         </div>
+         <div>
+            <small> Olena </small>
+         </div>
+         <button
+         [routerLink]="['/board', 12]"
+         class="btn btn-dark"
+         >Оpen</button>
+    </div>
+
+
     <app-board-item></app-board-item>
     <app-board-item></app-board-item>
     <app-board-item></app-board-item>
