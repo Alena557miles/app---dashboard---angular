@@ -27,19 +27,18 @@ export class BoardService{
         )
     }
     getAll(): Observable<Board[]>{
-        return this.http.get(`${environment.fbDbUrl}/posts.json`)
-            .pipe(
-                map((response: {[key: string]: any}) =>{
-                    Object.
-                    keys(response)
-                    .map(key => ({
-                        ...response[key],
-                        id: key,
-                        date: new Date(response[key].date)
-
-                    }))
-                    return []
-                })
-            )
-    }
+        // return this.http.get(`https://angular-taskboard-default-rtdb.firebaseio.com/boards.json`)
+        return this.http.get(`${environment.fbDbUrl}/boards.json`)
+                    .pipe(
+                        map((response: {[key: string]: any}) => {
+                            return Object
+                                    .keys(response)
+                                    .map(key => ({
+                                        ...response[key],
+                                        id: key,
+                                        date: new Date(response[key].date)
+                                    }))
+                        })
+                    )
+            }
 }

@@ -11,7 +11,7 @@ import { Board } from 'src/app/shared/interfaces';
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
 
-  boards:Board[]
+  boards: Board[]
   pSub: Subscription
 
   constructor(
@@ -27,7 +27,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.pSub){
-      this.pSub.unsubscribe
+      this.pSub.unsubscribe()
     }
   }
 
