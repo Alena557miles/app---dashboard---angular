@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BoardService } from 'src/app/shared/board.service';
 import { Board } from '../../shared/interfaces';
 
 
@@ -12,11 +13,7 @@ export class CreateBoardComponent implements OnInit {
 
   form: FormGroup;
 
-  // get title(){
-  //   return this.form.controls.title as FormControl
-  // }
-
-  constructor() { }
+  constructor(private boardService: BoardService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -40,6 +37,8 @@ export class CreateBoardComponent implements OnInit {
       description: this.form.value.description,
       date: new Date(),
     }
-    console.log(board)
+    this.boardService.create(board).subscribe( () => {
+      this.form.reset()
+    })
   }
 }

@@ -24,6 +24,8 @@ export class LoginPageComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['loginAgain']){
         this.message = 'please, login to see dashboard and create task'
+      } else if (params['authFailed']){
+        this.message = 'please, login again'
       }
     })
 
@@ -50,7 +52,7 @@ export class LoginPageComponent implements OnInit {
       returnSecureToken: false
     }
     this.form.disable()
-    this.auth.login(user).subscribe(() => {
+    this.auth.login(user).subscribe( () => {
       this.form.reset()
       this.router.navigate(['/admin','dashboard'])
     }, () => {

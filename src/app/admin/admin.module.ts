@@ -14,6 +14,7 @@ import { CreateTaskComponent } from "./create-task/create-task.component";
 import { AuthService } from "./shared/services/auth.service";
 import { SharedModule } from "../shared/shared.module";
 import { AuthGuard } from "./shared/services/auth.guard";
+import { HttpClientModule } from "@angular/common/http";
 
 
 
@@ -33,6 +34,7 @@ import { AuthGuard } from "./shared/services/auth.guard";
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
+        HttpClientModule,
         RouterModule.forChild([
             {
                 path:'', component:AdminLayoutComponent,children:[
@@ -46,7 +48,7 @@ import { AuthGuard } from "./shared/services/auth.guard";
         ])
     ],
     exports: [RouterModule],
-    providers: [AuthService, AuthGuard]
+    providers: [AuthGuard]
 
 })
 export class AdminModule{
