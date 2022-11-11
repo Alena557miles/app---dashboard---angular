@@ -35,7 +35,7 @@ export class BoardService{
                     .map(key => ({
                         ...response[key],
                         id: key,
-                        date: new Date( response[key].date)
+                        date: new Date(response[key].date)
 
                     }))
                     return []

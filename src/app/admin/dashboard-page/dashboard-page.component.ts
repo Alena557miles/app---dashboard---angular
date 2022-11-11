@@ -20,7 +20,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    this.pSub = this.boardService.getAll().subscribe( boards =>
+    this.pSub = this.boardService.getAll().subscribe(boards =>
       this.boards = boards
       )
   }
