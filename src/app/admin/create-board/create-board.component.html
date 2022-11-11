@@ -11,7 +11,7 @@
     </div>
 
     <small
-    class="error"
+    class="alert"
     *ngIf="form.get('title')?.errors?.minlength && form.get('title')?.touched"
     >   Please fill title field width min length
     {{form.get('title')?.errors?.minlength.requiredLength}}
@@ -29,7 +29,7 @@
     </div>
 
     <small
-    class="error"
+    class="alert"
     *ngIf="form.get('description')?.errors?.minlength && form.get('description')?.touched"
     >   Please fill description field width min length
     {{form.get('description')?.errors?.minlength.requiredLength}}

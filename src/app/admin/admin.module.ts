@@ -12,7 +12,7 @@ import { BoardItemComponent } from "./shared/components/board-item/board-item.co
 import { BoardPageComponent } from "./board-page/board-page.component";
 import { CreateTaskComponent } from "./create-task/create-task.component";
 import { AuthService } from "./shared/services/auth.service";
-import { SharedModule } from "../shared/components/shared.module";
+import { SharedModule } from "../shared/shared.module";
 import { AuthGuard } from "./shared/services/auth.guard";
 
 

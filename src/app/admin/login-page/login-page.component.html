@@ -24,11 +24,11 @@
     class="validation"
     *ngIf="form.get('email')?.touched && form.get('email')?.invalid" 
     >
-        <small
+        <small class="alert"
         *ngIf="form.get('email')?.errors?.['required']"
         > Enter your e-mail </small>
 
-        <small
+        <small class="alert"
         *ngIf="form.get('email')?.errors?.['email']"
         > Enter your e-mail </small>
     </div>
@@ -43,11 +43,11 @@
     class="validation"
     *ngIf="form.get('password')?.touched && form.get('password')?.invalid" >
 
-        <small
+        <small class="alert"
         *ngIf="form.get('password')?.errors?.['required']"
         > Enter the password</small>
 
-        <small
+        <small class="alert"
         *ngIf="form.get('password')?.errors?.['minlength']"
         > The password must be at least 
         {{form.get('password')?.errors?.minlength.requiredLength}}

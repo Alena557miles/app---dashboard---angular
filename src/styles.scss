@@ -54,10 +54,7 @@ a {
 	
 }
 .active{
-	color: red;
-}
-.error{
-	color: red;
+	color: rgb(25, 105, 162);
 }
 
 
@@ -82,16 +79,15 @@ a {
     border-radius: 0.5rem;
     background: #d1e0ee;
 }
+
+
 .alert, .alert-danger{
 	background: azure;
     height: 2rem;
-    text-align: center;
-    display: block;
     line-height: 2rem;
+	text-align: center;
+    display: block;
     color: brown;
     text-transform: uppercase;
-	font-size: 0.8rem;
-}
-small{
-	color: brown;
+	font-size: 0.6rem;
 }

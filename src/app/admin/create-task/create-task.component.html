@@ -11,7 +11,7 @@
         >
     </div>
     <small
-    class="error"
+    class="alert"
     *ngIf="title.errors?.minlength && title.touched"
     >Please fill title field width min length. Now {{ title.value.length }}
     </small>
@@ -19,12 +19,6 @@
     <button
     type="submit"
     class="btn modal-btn"
-
-    >Create task</button>
-<!-- 
-    <button
-    type="submit"
-    class="btn modal-btn"
     [disabled]="form.invalid"
-    >Create board</button> -->
+    >Create task</button>
 </form>
