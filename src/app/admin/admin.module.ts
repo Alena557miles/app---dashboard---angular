@@ -11,10 +11,10 @@ import { AdminLayoutComponent } from "./shared/components/admin-layout/admin-lay
 import { BoardItemComponent } from "./shared/components/board-item/board-item.component";
 import { BoardPageComponent } from "./board-page/board-page.component";
 import { CreateTaskComponent } from "./create-task/create-task.component";
-import { AuthService } from "./shared/services/auth.service";
 import { SharedModule } from "../shared/shared.module";
 import { AuthGuard } from "./shared/services/auth.guard";
 import { HttpClientModule } from "@angular/common/http";
+import { SearchPipe } from "./shared/search.pipes";
 
 
 
@@ -28,6 +28,7 @@ import { HttpClientModule } from "@angular/common/http";
         BoardPageComponent,
         ModalBoardComponent,
         BoardItemComponent,
+        SearchPipe,
     ],
     imports:[
         CommonModule,

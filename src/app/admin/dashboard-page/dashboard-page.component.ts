@@ -11,8 +11,11 @@ import { Board } from 'src/app/shared/interfaces';
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
 
-  boards: Board[]
+
+  boards: Board[] = []
   pSub: Subscription
+  dSub: Subscription
+  searchStr: '';
 
   constructor(
     public modalService: ModalService,
@@ -24,11 +27,23 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       this.boards = boards
       )
   }
+  
+  remove(id: string|undefined) {
+    if (id){
+      this.dSub = this.boardService.remove(id).subscribe(() =>{
+        this.boards = this.boards.filter(board => board.id != id)
+      })
+    }
+  }
 
   ngOnDestroy(): void {
     if (this.pSub){
       this.pSub.unsubscribe()
     }
+    if (this.dSub){
+      this.dSub.unsubscribe()
+    }
   }
+
 
 }

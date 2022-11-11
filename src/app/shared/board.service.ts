@@ -27,7 +27,6 @@ export class BoardService{
         )
     }
     getAll(): Observable<Board[]>{
-        // return this.http.get(`https://angular-taskboard-default-rtdb.firebaseio.com/boards.json`)
         return this.http.get(`${environment.fbDbUrl}/boards.json`)
                     .pipe(
                         map((response: {[key: string]: any}) => {
@@ -40,5 +39,9 @@ export class BoardService{
                                     }))
                         })
                     )
-            }
+    }
+    remove(id: string): Observable<void>{
+        return this.http.delete<void>(`${environment.fbDbUrl}/boards/${id}.json`)
+    }
+
 }

@@ -1,31 +1,40 @@
-<p>dashboard-page works!</p>
-<div class="dashboard">
-    <div class="add-dashboard">
-        <button 
-        class="btn btn-dashboard"
-        (click)="modalService.open()">+</button>
+
+<div     *ngIf="boards.length" else preloading>
+    <p>dashboard-page works!</p>
+
+    <div class="form-control">
+        <input type="text" placeholder="filter board" [(ngModel)]="searchStr">
     </div>
+    <div class="dashboard">
+        <div class="add-dashboard">
+            <button 
+            class="btn btn-dashboard"
+            (click)="modalService.open()">+</button>
+        </div>
 
+        <!-- [routerLink]="['/admin','board', board.id]" -->
+        <div class="card"
+        *ngFor="let board of boards | searchPipe:searchStr">
+            <div class="card-header" [routerLink]="['/admin','board', board.id]" >
+                <h2>{{ board.name }}</h2>   
+                <p>{{ board.description}}</p>
+                <small>{{ board.date | date:'medium'}}</small>
+            </div>
+            <div>
+                <small> {{ board.author}} </small>
+            </div>
+            <a class="btn-board"
+            (click)="remove(board.id)">&#10006;</a>
+        </div>
 
-    <div class="card"
-    *ngFor="let board of boards">
-        <div class="card-header">
-            <h2>{{ board.name }}</h2>   
-            <p>{{ board.description}}</p>
-            <small>{{ board.date | date:'medium'}}</small>
-         </div>
-         <div>
-            <small> {{ board.author}} </small>
-         </div>
-         <button
-         [routerLink]="['/board', 12]"
-         class="btn btn-dark"
-         >Оpen</button>
+        <app-modal-board 
+        title="Create board"
+        *ngIf="modalService.isVisiBle$ | async">
+            <app-create-board></app-create-board>
+        </app-modal-board>
     </div>
-
-    <app-modal-board 
-    title="Create board"
-    *ngIf="modalService.isVisiBle$ | async">
-        <app-create-board></app-create-board>
-    </app-modal-board>
 </div>
+
+<ng-template #preloading >
+    <div class="loader">Loading...</div>
+</ng-template>
