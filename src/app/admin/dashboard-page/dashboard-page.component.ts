@@ -10,8 +10,8 @@ import { Board } from 'src/app/shared/interfaces';
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
-
-
+  
+  public action = 'create'
   boards: Board[] = []
   pSub: Subscription
   dSub: Subscription

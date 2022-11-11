@@ -1,0 +1,52 @@
+<p>edit-board works!</p>
+
+<!-- *ngIf="form" else loading -->
+<div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-control">
+        <label for="title"></label>
+        <input 
+        id="title" 
+        type="text" 
+        formControlName="title" 
+        placeholder="board name"
+        >
+    </div>
+
+    <small
+    class="alert"
+    *ngIf="form.get('title')?.errors?.minlength && form.get('title')?.touched"
+    >   Please fill title field width min length
+    {{form.get('title')?.errors?.minlength.requiredLength}}
+    . Now  {{form.get('title')?.errors?.minlength.actualLength}}
+    </small>
+
+    <div class="form-control">
+        <label for="description"></label>
+        <input 
+        id="description" 
+        type="text" 
+        formControlName="description" 
+        placeholder="description"
+        >
+    </div>
+
+    <small
+    class="alert"
+    *ngIf="form.get('description')?.errors?.minlength && form.get('description')?.touched"
+    >   Please fill description field width min length
+    {{form.get('description')?.errors?.minlength.requiredLength}}
+    . Now  {{form.get('description')?.errors?.minlength.actualLength}}
+    </small>
+
+    <button
+    type="submit"
+    class="btn modal-btn"
+    [disabled]="form.invalid || submitted"
+    >Save changes</button>
+</form>
+</div>
+<ng-template #loading>
+    <p> Loading...</p>
+</ng-template>
+

@@ -15,6 +15,7 @@ import { SharedModule } from "../shared/shared.module";
 import { AuthGuard } from "./shared/services/auth.guard";
 import { HttpClientModule } from "@angular/common/http";
 import { SearchPipe } from "./shared/search.pipes";
+import { EditBoardComponent } from './edit-board/edit-board.component';
 
 
 
@@ -29,6 +30,7 @@ import { SearchPipe } from "./shared/search.pipes";
         ModalBoardComponent,
         BoardItemComponent,
         SearchPipe,
+        EditBoardComponent,
     ],
     imports:[
         CommonModule,

@@ -40,8 +40,23 @@ export class BoardService{
                         })
                     )
     }
+    getById(id: string): Observable<Board>{
+        return this.http.get<Board>(`${environment.fbDbUrl}/boards/${id}.json`)
+            .pipe(
+                map((board: Board) => {
+                    return{
+                        ...board,
+                        id,
+                        date: new Date(board.date)
+                    }
+                })
+            )
+    }
     remove(id: string): Observable<void>{
         return this.http.delete<void>(`${environment.fbDbUrl}/boards/${id}.json`)
+    }
+    update(board: Board): Observable<Board>{
+        return this.http.patch<Board>(`${environment.fbDbUrl}/boards/${board.id}.json`,board)
     }
 
 }
