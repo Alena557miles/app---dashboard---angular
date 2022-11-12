@@ -8,8 +8,9 @@
             class="add-task-btn btn"
             (click)="modalService.open()"
             >+</button>
-            <div class="task">
-                <h3 class="task-title">Name &#10006;</h3>  
+            <div class="task"
+            *ngFor="let task of tasks">
+                <h3 class="task-title">{{ task.name }}</h3>  
                 <div class="task-btns">
                     <button class="edit-btn btn">&#9998;</button>
                     <button class="delete-btn btn">&#8864;</button>
@@ -18,28 +19,24 @@
             </div>
         </div>
     </div>
-    <div class="board-item">
+    <div 
+
+    class="board-item"
+    >
         <h3 class="block-title">in progress</h3>
         <div class="block">
             <button 
             class="add-task-btn btn"
             (click)="modalService.open()"
             >+</button>
-            <div class="task">
-                <h3 class="task-title">Name</h3>  
+            <div class="task"
+            *ngFor="let task of tasks">
+                <h3 class="task-title">{{ task.name }}</h3>  
                 <div class="task-btns">
                     <button class="edit-btn btn">&#9998;</button>
                     <button class="delete-btn btn">&#8864;</button>
                     <button class="archive-btn btn">&#9972;</button>
                 </div> 
-            </div>
-            <div class="task">
-                <h3 class="task-title">Name</h3>
-                <div class="task-btns">
-                    <button class="edit-btn btn">&#9998;</button>
-                    <button class="delete-btn btn">&#8864;</button>
-                    <button class="archive-btn btn">&#9972;</button>
-                </div>
             </div>
         </div>
     </div>
@@ -50,8 +47,9 @@
             class="add-task-btn btn"
             (click)="modalService.open()"
             >+</button>
-            <div class="task">
-                <h3 class="task-title">Name</h3>  
+            <div class="task"
+            *ngFor="let task of tasks">
+                <h3 class="task-title">{{ task.name }}</h3>  
                 <div class="task-btns">
                     <button class="edit-btn btn">&#9998;</button>
                     <button class="delete-btn btn">&#8864;</button>
@@ -66,30 +64,36 @@
 title="Create task"
 *ngIf="modalService.isVisiBle$ | async">
     <p>create-task works!</p>
-    <form (ngSubmit)="submit()">
+    <form #editForm="ngForm"
+    (ngSubmit)="submit(editForm)">
         <div class="form-group">
-            <label for="title"></label>
+            <label for="name">Task name</label>
             <input 
-            id="title" 
+            #name="ngModel"
             type="text" 
             name = "name"
             class="form-controll"
             placeholder="task name"
             ngModel
+            required
+            minlength="2"
             >
         </div>
-        <!-- <small
+        <small
         class="alert"
-        *ngIf="title.errors?.minlength && title.touched"
-        >Please fill title field width min length. Now {{ title.value.length }}
-        </small> -->
+        *ngIf="name.invalid && name.touched"
+        >Please fill title field width min length. Now {{ name.value.length }}
+        </small>
+        <div class="form-group">
+            <select name="select" ngModel>
+            <option *ngFor="let status of statuses">{{ status }} </option>
+            </select>
+        </div>
 
         <button
         type="submit"
         class="btn modal-btn"
-        [disabled]="form.invalid"
+        [disabled]="name.invalid"
         >Create task</button>
-
-        <!-- [disabled]="form.invalid" -->
     </form>
 </app-modal-board>

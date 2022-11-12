@@ -6,10 +6,14 @@ export interface Board{
     date: Date
 }
 
+export type TaskStatus = 'todo' | 'in progress' | 'done'
+
+
 export interface Task{
     id?: string
     name: string
-    author?: string
+    status: TaskStatus
+    date: Date
 }
 
 export interface User {
