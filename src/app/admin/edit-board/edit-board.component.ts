@@ -31,7 +31,6 @@ export class EditBoardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.pipe(
       switchMap((params: Params) => {
-        console.log(params)
         return this.boardService.getById(params['id'])
       })
     ).subscribe((board: Board) => {

@@ -22,15 +22,10 @@ export class AuthInterceptor implements HttpInterceptor{
                         auth: this.auth.token
                     },
                 })
-                console.log(req)
             }
         }
         return next.handle(req)
         .pipe(
-            tap( (res) => {
-                console.log('intercept working')
-                console.log(res)
-            }),
             catchError((error: HttpErrorResponse) => {
                 console.log('Interceptor error: ', error)
                 if (error.status === 401) {
