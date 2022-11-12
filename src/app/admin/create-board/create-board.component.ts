@@ -44,6 +44,7 @@ export class CreateBoardComponent implements OnInit {
     this.boardService.create(board).subscribe( () => {
       this.form.reset()
       this.modalService.close()
+      window.location.reload();
     })
   }
 }

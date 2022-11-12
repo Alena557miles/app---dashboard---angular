@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
@@ -13,10 +13,13 @@ import { Board } from 'src/app/shared/interfaces';
 })
 export class EditBoardComponent implements OnInit, OnDestroy {
 
+  @Input()
+
   form:FormGroup
   board: Board
   submitted = false
   uSub: Subscription
+
 
   constructor(    
     private boardService: BoardService,
@@ -25,19 +28,31 @@ export class EditBoardComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    this.route.params.pipe(
-      switchMap((params: Params) => {
-        console.log(params)
-        return this.boardService.getById(params['id'])
-      })
-    ).subscribe((board: Board) => {
-      this.board = board
-      console.log(board)
-      this.form = new FormGroup({
-        name: new FormControl(board.name, Validators.required),
-        description: new FormControl(board.description, Validators.required)
-      })
+    // this.route.params.pipe(
+    //   switchMap((params: Params) => {
+    //     console.log(params)
+    //     return this.boardService.getById(params['id'])
+    //   })
+    // ).subscribe((board: Board) => {
+    //   this.board = board
+    //   console.log(board)
+    //   this.form = new FormGroup({
+    //     name: new FormControl(board.name, Validators.required),
+    //     description: new FormControl(board.description, Validators.required)
+    //   })
+    // })
+
+    this.form = new FormGroup({
+      title: new FormControl<string>('',[
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      description: new FormControl<string>('',[
+        Validators.required,
+        Validators.minLength(7)
+      ])
     })
+
   }
 
   ngOnDestroy(): void {
@@ -57,6 +72,7 @@ export class EditBoardComponent implements OnInit, OnDestroy {
       description: this.board.description,
     }).subscribe(() => {
       this.submitted = false
+      this.modalService.close()
     })
   }
 }

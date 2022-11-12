@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/services/modal.service';
 import { BoardService } from 'src/app/shared/board.service';
@@ -12,7 +13,10 @@ import { Board } from 'src/app/shared/interfaces';
 export class DashboardPageComponent implements OnInit, OnDestroy {
   
   public action = 'create'
+
   boards: Board[] = []
+  public board: Board
+  form:FormGroup
   pSub: Subscription
   dSub: Subscription
   searchStr: '';
@@ -52,11 +56,12 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   edit(id: string | undefined): string | null {
     if (id) {
       this.action = 'edit'
-      // this.boardService.getById(id).subscribe(()=> {
-
-      // })
+      this.boardService.getById(id).subscribe((board: Board) => {
+      this.board = board
+      console.log(board)
       return id
-    }
+    })
+  }
     return null
   }
 

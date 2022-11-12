@@ -1,5 +1,5 @@
 
-<div     *ngIf="boards.length" else preloading>
+<div     *ngIf="boards?.length" else preloading>
     <p>dashboard-page works!</p>
 
     <div class="form-control">
@@ -14,7 +14,8 @@
 
         <div class="card"
         *ngFor="let board of boards | searchPipe:searchStr">
-            <div class="card-header" [routerLink]="['/admin','board', board.id]" >
+            <div class="card-header" [routerLink]="['/admin','board', board.id]" 
+             >
                 <h2>{{ board.name }}</h2>   
                 <p>{{ board.description}}</p>
                 <small>{{ board.date | date:'medium'}}</small>
@@ -23,7 +24,7 @@
                 <small> {{ board.author}} </small>
             </div>
             <a class="btn-board btn-edit" 
-            (click)="edit(board.id); modalService.open()"
+            (click)="edit(board.id); modalService.open(); "
             >&#x2710;</a>
             <a class="btn-board"
             (click)="remove(board.id)">&#10006;</a>
@@ -34,7 +35,10 @@
         title="board"
         *ngIf="modalService.isVisiBle$ | async"
         [ngSwitch]="action">
-            <app-create-board *ngSwitchCase="'create'"></app-create-board>
+            <app-create-board 
+            *ngSwitchCase="'create'"
+
+            ></app-create-board>
             <app-edit-board *ngSwitchCase="'edit'"></app-edit-board>
         </app-modal-board>
     </div>
