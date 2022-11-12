@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ModalService } from 'src/app/admin/shared/services/modal.service';
 
 
@@ -8,10 +9,16 @@ import { ModalService } from 'src/app/admin/shared/services/modal.service';
   styleUrls: ['./board-page.component.scss']
 })
 export class BoardPageComponent implements OnInit {
+  
+  title: string
+  form: FormGroup
 
   constructor(public modalService: ModalService) { }
 
   ngOnInit(): void {
+  }
+  submit(){
+    
   }
 
 }

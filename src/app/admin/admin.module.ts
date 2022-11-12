@@ -10,7 +10,6 @@ import { LoginPageComponent } from "./login-page/login-page.component";
 import { AdminLayoutComponent } from "./shared/components/admin-layout/admin-layout.component";
 import { BoardItemComponent } from "./shared/components/board-item/board-item.component";
 import { BoardPageComponent } from "./board-page/board-page.component";
-import { CreateTaskComponent } from "./create-task/create-task.component";
 import { SharedModule } from "../shared/shared.module";
 import { AuthGuard } from "./shared/services/auth.guard";
 import { HttpClientModule } from "@angular/common/http";
@@ -28,7 +27,6 @@ import { ModalService } from "./shared/services/modal.service";
         LoginPageComponent,
         DashboardPageComponent,
         CreateBoardComponent,
-        CreateTaskComponent,
         BoardPageComponent,
         ModalBoardComponent,
         BoardItemComponent,

@@ -1,4 +1,4 @@
-<h1>Board Name</h1>
+<h1> {{ title }}</h1>
 <a href="#">DELETE BOARD</a>
 <div class="board-container">
     <div class="board-item">
@@ -16,22 +16,6 @@
                     <button class="archive-btn btn">&#9972;</button>
                 </div> 
             </div>
-            <div class="task">
-                <h3 class="task-title">Name</h3>
-                <div class="task-btns">
-                    <button class="edit-btn btn">&#9998;</button>
-                    <button class="delete-btn btn">&#8864;</button>
-                    <button class="archive-btn btn">&#9972;</button>
-                </div>
-            </div>
-            <div class="task">
-                <h3 class="task-title">Name</h3>
-                <div class="task-btns">
-                    <button class="edit-btn btn">&#9998;</button>
-                    <button class="delete-btn btn">&#8864;</button>
-                    <button class="archive-btn btn">&#9972;</button>
-                </div>
-            </div>
         </div>
     </div>
     <div class="board-item">
@@ -48,30 +32,6 @@
                     <button class="delete-btn btn">&#8864;</button>
                     <button class="archive-btn btn">&#9972;</button>
                 </div> 
-            </div>
-            <div class="task">
-                <h3 class="task-title">Name</h3>
-                <div class="task-btns">
-                    <button class="edit-btn btn">&#9998;</button>
-                    <button class="delete-btn btn">&#8864;</button>
-                    <button class="archive-btn btn">&#9972;</button>
-                </div>
-            </div>
-            <div class="task">
-                <h3 class="task-title">Name</h3>
-                <div class="task-btns">
-                    <button class="edit-btn btn">&#9998;</button>
-                    <button class="delete-btn btn">&#8864;</button>
-                    <button class="archive-btn btn">&#9972;</button>
-                </div>
-            </div>
-            <div class="task">
-                <h3 class="task-title">Name</h3>
-                <div class="task-btns">
-                    <button class="edit-btn btn">&#9998;</button>
-                    <button class="delete-btn btn">&#8864;</button>
-                    <button class="archive-btn btn">&#9972;</button>
-                </div>
             </div>
             <div class="task">
                 <h3 class="task-title">Name</h3>
@@ -105,5 +65,28 @@
 <app-modal-board 
 title="Create task"
 *ngIf="modalService.isVisiBle$ | async">
-    <app-create-task></app-create-task>
+    <p>create-task works!</p>
+    <form [formGroup]="form"
+    (ngSubmit)="submit()">
+        <div class="form-control">
+            <label for="title"></label>
+            <input 
+            id="title" 
+            type="text" 
+            formControlName="title" 
+            placeholder="task name"
+            >
+        </div>
+        <!-- <small
+        class="alert"
+        *ngIf="title.errors?.minlength && title.touched"
+        >Please fill title field width min length. Now {{ title.value.length }}
+        </small> -->
+
+        <button
+        type="submit"
+        class="btn modal-btn"
+        [disabled]="form.invalid"
+        >Create task</button>
+    </form>
 </app-modal-board>
