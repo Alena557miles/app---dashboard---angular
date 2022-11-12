@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
-import { Board, Task, FbCreateRsponse } from "./interfaces";
+import { Board, Task, FbCreateRsponseBoard } from "./interfaces";
 
 @Injectable({
     providedIn:"root"
@@ -17,10 +17,10 @@ export class BoardService{
     create(board: Board): Observable<Board>{
         return this.http.post<Board>(`${environment.fbDbUrl}/boards.json`, board)
         .pipe(
-            map((response: FbCreateRsponse) => {
+            map((response: FbCreateRsponseBoard) => {
                 return{
                     ...board,
-                    id: response.name,
+                    id: response.title,
                     date: new Date(board.date)
                 }
             })

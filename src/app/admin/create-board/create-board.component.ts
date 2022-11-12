@@ -39,7 +39,7 @@ export class CreateBoardComponent implements OnInit {
       return
     }
     const board: Board = {
-      name: this.form.value.title,
+      title: this.form.value.title,
       description: this.form.value.description,
       date: new Date(),
     }

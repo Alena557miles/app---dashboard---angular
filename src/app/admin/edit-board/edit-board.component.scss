@@ -1,18 +1,22 @@
-.form-control{
-    input{
-        height: 40px;
-        width: 100%;
-        border: 1px solid #81afda;
-        border-radius: 0.4rem;
-        padding-left: 1rem;
-        margin-bottom: 1rem;
+form{
+    width: 70%;
+    margin-top: 2rem;
+    .form-control{
+        input{
+            height: 40px;
+            width: 100%;
+            border: 1px solid #81afda;
+            border-radius: 0.4rem;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
     }
-}
-
-.modal-btn{
-    display: block;
-    height: 3rem;
-    width: 100%;
-    border-radius: 0.5rem;
-    background: #d1e0ee;
+    
+    .edit-btn{
+        display: block;
+        height: 3rem;
+        width: 100%;
+        border-radius: 0.5rem;
+        background: #d1e0ee;
+    }
 }

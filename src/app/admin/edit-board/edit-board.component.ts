@@ -14,7 +14,6 @@ import { AlertService } from '../shared/services/alert.service';
 })
 export class EditBoardComponent implements OnInit, OnDestroy {
 
-  @Input() boardItem: Board
 
   form:FormGroup
   board: Board
@@ -30,29 +29,18 @@ export class EditBoardComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    // this.route.params.pipe(
-    //   switchMap((params: Params) => {
-    //     console.log(params)
-    //     return this.boardService.getById(params['id'])
-    //   })
-    // ).subscribe((board: Board) => {
-    //   this.board = board
-    //   console.log(board)
-    //   this.form = new FormGroup({
-    //     name: new FormControl(board.name, Validators.required),
-    //     description: new FormControl(board.description, Validators.required)
-    //   })
-    // })
-
-    this.form = new FormGroup({
-      title: new FormControl<string>('',[
-        Validators.required,
-        Validators.minLength(4)
-      ]),
-      description: new FormControl<string>('',[
-        Validators.required,
-        Validators.minLength(7)
-      ])
+    this.route.params.pipe(
+      switchMap((params: Params) => {
+        console.log(params)
+        return this.boardService.getById(params['id'])
+      })
+    ).subscribe((board: Board) => {
+      this.board = board
+      console.log(board)
+      this.form = new FormGroup({
+        title: new FormControl(board.title, Validators.required),
+        description: new FormControl(board.description, Validators.required)
+      })
     })
 
   }
@@ -70,7 +58,7 @@ export class EditBoardComponent implements OnInit, OnDestroy {
     this.submitted = true
     this.uSub = this.boardService.update({
       ...this.board,
-      name: this.board.name,
+      title: this.board.title,
       description: this.board.description,
     }).subscribe(() => {
       this.submitted = false

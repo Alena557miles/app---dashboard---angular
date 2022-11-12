@@ -1,6 +1,6 @@
 export interface Board{
     id?: string
-    name: string
+    title: string
     description: string
     author?: string
     date: Date
@@ -29,4 +29,7 @@ export interface FbAuthResponse{
 }
 export interface FbCreateRsponse{
     name: string
+}
+export interface FbCreateRsponseBoard{
+    title: string
 }

@@ -10,7 +10,7 @@ export class SearchPipe implements PipeTransform{
             return boards
         }
         return boards.filter(board => {
-            return board.name.toLowerCase().includes(search.toLowerCase())
+            return board.title.toLowerCase().includes(search.toLowerCase())
         })
     }
 

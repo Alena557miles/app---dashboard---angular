@@ -40,7 +40,7 @@ export class BoardPageComponent implements OnInit {
         })
       ).subscribe((board: Board) => {
         this.board = board
-        this.title = board.name
+        this.title = board.title
       })
     this.pSub = this.taskService.getAll().subscribe(tasks =>
       this.tasks = tasks
