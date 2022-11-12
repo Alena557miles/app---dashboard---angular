@@ -16,6 +16,8 @@ import { AuthGuard } from "./shared/services/auth.guard";
 import { HttpClientModule } from "@angular/common/http";
 import { SearchPipe } from "./shared/search.pipes";
 import { EditBoardComponent } from './edit-board/edit-board.component';
+import { AlertComponent } from './shared/components/alert/alert.component';
+import { AlertService } from "./shared/services/alert.service";
 
 
 
@@ -31,6 +33,7 @@ import { EditBoardComponent } from './edit-board/edit-board.component';
         BoardItemComponent,
         SearchPipe,
         EditBoardComponent,
+        AlertComponent,
     ],
     imports:[
         CommonModule,
@@ -51,7 +54,7 @@ import { EditBoardComponent } from './edit-board/edit-board.component';
         ])
     ],
     exports: [RouterModule],
-    providers: [AuthGuard]
+    providers: [AlertService,AuthGuard]
 
 })
 export class AdminModule{

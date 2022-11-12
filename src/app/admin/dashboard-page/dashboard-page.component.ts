@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/services/modal.service';
 import { BoardService } from 'src/app/shared/board.service';
 import { Board } from 'src/app/shared/interfaces';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -23,7 +24,8 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   constructor(
     public modalService: ModalService,
-    private boardService: BoardService
+    private boardService: BoardService,
+    private alertService: AlertService
     ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     if (id){
       this.dSub = this.boardService.remove(id).subscribe(() =>{
         this.boards = this.boards.filter(board => board.id != id)
+        this.alertService.warning('Board delete successfully')
       })
     }
   }

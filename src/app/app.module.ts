@@ -13,7 +13,6 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/auth.interceptors';
 
-
 @NgModule({
   declarations: [
     AppComponent,

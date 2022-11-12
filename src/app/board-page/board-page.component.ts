@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Board } from '../shared/interfaces';
 
 
 @Component({
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board-page.component.scss']
 })
 export class BoardPageComponent implements OnInit {
+
+
 
   constructor() { }
 

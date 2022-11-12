@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ModalService } from '../services/modal.service';
+import { BoardService } from '../shared/board.service';
+import { Board } from '../shared/interfaces';
 
 @Component({
   selector: 'app-home-page',
@@ -7,10 +10,15 @@ import { ModalService } from '../services/modal.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  
+  boards$ :Observable<Board[]>
 
-  constructor(public modalService: ModalService) { }
+  constructor(
+    private boardService: BoardService
+  ) { }
 
   ngOnInit(): void {
+    this.boards$ = this.boardService.getAll()
   }
 
 }

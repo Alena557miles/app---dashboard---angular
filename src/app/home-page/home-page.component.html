@@ -1,9 +1,15 @@
-<div class="dashboard">   
+<div class="dashboard"
+*ngIf="boards$ | async as boards">   
 
     
-    <app-board-item></app-board-item>
-    <app-board-item></app-board-item>
-    <app-board-item></app-board-item>
+    <app-board-item
+    *ngFor="let board of boards"
+    [board] = "board"
+    >
+    </app-board-item>
 
 
 </div>
+<ng-template #loading>
+
+</ng-template>

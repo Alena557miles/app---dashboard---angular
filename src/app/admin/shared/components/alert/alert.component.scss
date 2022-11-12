@@ -1,0 +1,17 @@
+.alert-wrap{
+    position: fixed;
+    top: 30px;
+    right: 40px;
+}
+
+.alert-message{
+    box-shadow: -9px -8px 23px 0px white, 8px 1px 10px 0px grey;
+    text-align: center;
+    display: block;
+    color: brown;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    display: block;
+    padding: 0.7rem;
+    font-size: 1rem;
+}

@@ -81,7 +81,7 @@ a {
 }
 
 
-.alert, .alert-danger{
+.alert{
 	background: azure;
     height: 2rem;
     line-height: 2rem;
@@ -90,4 +90,12 @@ a {
     color: brown;
     text-transform: uppercase;
 	font-size: 0.6rem;
+}
+.alert-warning{
+    background: rgb(240, 186, 186);
+	color:#363e4a
+}
+.alert-danger{
+    background: rgb(188, 223, 123);
+	color:#363e4a
 }

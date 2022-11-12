@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
 import { BoardService } from 'src/app/shared/board.service';
 import { Board } from '../../shared/interfaces';
+import { AlertService } from '../shared/services/alert.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class CreateBoardComponent implements OnInit {
   constructor(
     private boardService: BoardService,
     private modalService: ModalService,
+    private alertService: AlertService,
     ) { }
 
   ngOnInit(): void {
@@ -44,7 +46,7 @@ export class CreateBoardComponent implements OnInit {
     this.boardService.create(board).subscribe( () => {
       this.form.reset()
       this.modalService.close()
-      window.location.reload();
+      this.alertService.success('Board was created succsessfully')
     })
   }
 }

@@ -5,6 +5,7 @@ import { Subscription, switchMap } from 'rxjs';
 import { ModalService } from 'src/app/services/modal.service';
 import { BoardService } from 'src/app/shared/board.service';
 import { Board } from 'src/app/shared/interfaces';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-edit-board',
@@ -24,6 +25,7 @@ export class EditBoardComponent implements OnInit, OnDestroy {
   constructor(    
     private boardService: BoardService,
     private modalService: ModalService,
+    private alertService: AlertService,
     private route: ActivatedRoute
     ) { }
 
@@ -73,6 +75,7 @@ export class EditBoardComponent implements OnInit, OnDestroy {
     }).subscribe(() => {
       this.submitted = false
       this.modalService.close()
+      this.alertService.success('Board was update')
     })
   }
 }
