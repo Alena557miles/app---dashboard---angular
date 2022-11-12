@@ -13,11 +13,12 @@ import { BoardPageComponent } from "./board-page/board-page.component";
 import { SharedModule } from "../shared/shared.module";
 import { AuthGuard } from "./shared/services/auth.guard";
 import { HttpClientModule } from "@angular/common/http";
-import { SearchPipe } from "./shared/search.pipes";
+import { SearchPipe } from "./shared/pipes/search.pipes";
 import { EditBoardComponent } from './edit-board/edit-board.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from "./shared/services/alert.service";
 import { ModalService } from "./shared/services/modal.service";
+import { StatusPipe } from "./shared/pipes/done.pipes";
 
 
 
@@ -31,6 +32,7 @@ import { ModalService } from "./shared/services/modal.service";
         ModalBoardComponent,
         BoardItemComponent,
         SearchPipe,
+        StatusPipe,
         EditBoardComponent,
         AlertComponent,
     ],
