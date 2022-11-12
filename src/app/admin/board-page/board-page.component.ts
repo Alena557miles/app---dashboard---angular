@@ -18,6 +18,7 @@ export class BoardPageComponent implements OnInit {
   statuses = ['todo','in progress','done']
   tasks: Task[] = []
   pSub: Subscription
+  type: string = 'todo'
 
   constructor(
     public modalService: ModalService,
@@ -30,6 +31,7 @@ export class BoardPageComponent implements OnInit {
       this.tasks = tasks
       )
   }
+
   submit(val: any){
     const task: Task ={
       name: val.value.name,
@@ -43,5 +45,6 @@ export class BoardPageComponent implements OnInit {
       this.alertService.success('Task was created succsessfully')
     })
   }
+
 
 }
