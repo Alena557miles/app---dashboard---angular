@@ -12,9 +12,14 @@
             (click)="addOption() ;modalService.open()">+</button>
         </div>
 
-        <div class="card"
-        *ngFor="let board of boards | searchPipe:searchStr">
-            <div class="card-header" [routerLink]="['/admin','board', board.id]" 
+        <div 
+        class="card"
+        *ngFor="let board of boards | searchPipe:searchStr"
+
+        >
+            <div 
+            class="card-header" 
+            [routerLink]="['/admin','board', board.id]" 
              >
                 <h2>{{ board.name }}</h2>   
                 <p>{{ board.description}}</p>

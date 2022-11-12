@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Board } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-board-item',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board-item.component.scss']
 })
 export class BoardItemComponent implements OnInit {
+  @Input() board: Board
 
   constructor() { }
 

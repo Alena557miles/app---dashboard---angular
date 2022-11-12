@@ -14,7 +14,7 @@ import { AlertService } from '../shared/services/alert.service';
 })
 export class EditBoardComponent implements OnInit, OnDestroy {
 
-  @Input()
+  @Input() boardItem: Board
 
   form:FormGroup
   board: Board

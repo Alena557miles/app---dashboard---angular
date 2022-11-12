@@ -18,6 +18,7 @@ import { SearchPipe } from "./shared/search.pipes";
 import { EditBoardComponent } from './edit-board/edit-board.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from "./shared/services/alert.service";
+import { ModalService } from "./shared/services/modal.service";
 
 
 
@@ -54,7 +55,7 @@ import { AlertService } from "./shared/services/alert.service";
         ])
     ],
     exports: [RouterModule],
-    providers: [AlertService,AuthGuard]
+    providers: [AlertService,ModalService,AuthGuard]
 
 })
 export class AdminModule{
