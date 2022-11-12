@@ -66,15 +66,16 @@
 title="Create task"
 *ngIf="modalService.isVisiBle$ | async">
     <p>create-task works!</p>
-    <form [formGroup]="form"
-    (ngSubmit)="submit()">
-        <div class="form-control">
+    <form (ngSubmit)="submit()">
+        <div class="form-group">
             <label for="title"></label>
             <input 
             id="title" 
             type="text" 
-            formControlName="title" 
+            name = "name"
+            class="form-controll"
             placeholder="task name"
+            ngModel
             >
         </div>
         <!-- <small
@@ -88,5 +89,7 @@ title="Create task"
         class="btn modal-btn"
         [disabled]="form.invalid"
         >Create task</button>
+
+        <!-- [disabled]="form.invalid" -->
     </form>
 </app-modal-board>
