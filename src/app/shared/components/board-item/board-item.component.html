@@ -1,13 +1,13 @@
 <div class="card">
-    <div class="card-header">
-        <h2>Board name</h2>   
-        <small>04/11/2022</small>
+    <div 
+    class="card-header"
+    [routerLink]="['/admin','board', board.id]" 
+    >
+      <h2>{{ board.name }}</h2>   
+      <p>{{ board.description}}</p>
+      <small>{{ board.date | date:'medium'}}</small>
      </div>
      <div>
-        <small> Olena </small>
+        <small> {{ board.author}} </small>
      </div>
-     <button
-     [routerLink]="['/board', 12]"
-     class="btn btn-dark"
-     >Оpen</button>
 </div>
