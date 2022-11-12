@@ -23,9 +23,13 @@
             <div>
                 <small> {{ board.author}} </small>
             </div>
-            <a class="btn-board btn-edit" 
+            <!-- <a class="btn-board btn-edit" 
             (click)="edit(board.id); modalService.open(); "
+            >&#x2710;</a> -->
+            <a class="btn-board btn-edit" 
+            [routerLink]="['/admin','board',board.id, 'edit']"
             >&#x2710;</a>
+
             <a class="btn-board"
             (click)="remove(board.id)">&#10006;</a>
         </div>
