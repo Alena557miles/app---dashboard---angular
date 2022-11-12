@@ -58,9 +58,7 @@
 </div>
 
 <app-modal-board 
-title="Create task"
 *ngIf="modalService.isVisiBle$ | async">
-    <p>create-task works!</p>
     <form #editForm="ngForm"
     (ngSubmit)="submit(editForm)">
         <div class="form-group">

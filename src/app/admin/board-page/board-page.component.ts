@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription, switchMap } from 'rxjs';
 import { ModalService } from 'src/app/admin/shared/services/modal.service';
+import { BoardService } from 'src/app/shared/board.service';
 import { TaskService } from 'src/app/shared/task.service';
-import { Task } from '../../shared/interfaces';
+import { Board, Task } from '../../shared/interfaces';
 import { AlertService } from '../shared/services/alert.service';
 
 
@@ -14,7 +16,8 @@ import { AlertService } from '../shared/services/alert.service';
 })
 export class BoardPageComponent implements OnInit {
   
-  title: string
+  title: string = ''
+
   statuses = ['todo','in progress','done']
   tasks: Task[] = []
   pSub: Subscription
@@ -23,14 +26,26 @@ export class BoardPageComponent implements OnInit {
   constructor(
     public modalService: ModalService,
     private alertService: AlertService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private route: ActivatedRoute,
+    private boardService: BoardService,
     ) { }
 
   ngOnInit(): void {
+
+    this.route.params.pipe(
+        switchMap((params: Params) => {
+          return this.boardService.getById(params['id'])
+        })
+      ).subscribe((board: Board) => {
+        this.title = board.name
+      })
     this.pSub = this.taskService.getAll().subscribe(tasks =>
       this.tasks = tasks
       )
   }
+
+
 
   submit(val: any){
     const task: Task ={

@@ -58,7 +58,7 @@
 
 .form-group{
     input{
-        height: 40px;
+        height: 2rem;
         width: 100%;
         border: 1px solid #81afda;
         border-radius: 0.4rem;
@@ -73,4 +73,11 @@
     width: 100%;
     border-radius: 0.5rem;
     background: #d1e0ee;
+}
+select{
+    width: 100%;
+    height: 1.7rem;
+    border: 1px solid #81afda;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
 }
