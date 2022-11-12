@@ -1,8 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
-import { ModalService } from 'src/app/admin/shared/services/modal.service';
 import { BoardService } from 'src/app/shared/board.service';
 import { Board } from 'src/app/shared/interfaces';
 import { AlertService } from '../shared/services/alert.service';
@@ -23,8 +22,8 @@ export class EditBoardComponent implements OnInit, OnDestroy {
 
   constructor(    
     private boardService: BoardService,
-    private modalService: ModalService,
     private alertService: AlertService,
+    private router: Router,
     private route: ActivatedRoute
     ) { }
 
@@ -61,7 +60,7 @@ export class EditBoardComponent implements OnInit, OnDestroy {
       description: this.board.description,
     }).subscribe(() => {
       this.submitted = false
-      this.modalService.close()
+      this.router.navigate(['/admin','dashboard'])
       this.alertService.success('Board was update')
     })
   }
