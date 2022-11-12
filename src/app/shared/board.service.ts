@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
-import { Board, FbCreateRsponse } from "./interfaces";
+import { Board, Task, FbCreateRsponse } from "./interfaces";
 
 @Injectable({
     providedIn:"root"
@@ -40,7 +40,7 @@ export class BoardService{
                         })
                     )
     }
-    getById(id: string): Observable<Board>{
+    getById(id: string|undefined): Observable<Board>{
         return this.http.get<Board>(`${environment.fbDbUrl}/boards/${id}.json`)
             .pipe(
                 map((board: Board) => {
@@ -58,5 +58,16 @@ export class BoardService{
     update(board: Board): Observable<Board>{
         return this.http.patch<Board>(`${environment.fbDbUrl}/boards/${board.id}.json`,board)
     }
+
+    addTask(task: Task, board:Board){
+        if (board){
+            this.getById(board.id).subscribe((board)=>{
+                board.tasks?.concat(task)
+                this.http.patch<Board>(`${environment.fbDbUrl}/boards/${board.id}.json`,board)
+            })
+            
+        }
+    } 
+
 
 }

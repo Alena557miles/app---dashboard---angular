@@ -1,5 +1,7 @@
 <h1> {{ title }}</h1>
-<a href="#">DELETE BOARD</a>
+<div class="form-control">
+    <input type="text" placeholder="filter board" [(ngModel)]="searchStr">
+</div>
 <div class="board-container">
     <div class="board-item">
         <h3 class="block-title">todo</h3>
@@ -9,7 +11,7 @@
             (click)="modalService.open()"
             >+</button>
             <div class="task"
-            *ngFor="let task of tasks | statusPipe:'todo'">
+            *ngFor="let task of tasks | statusPipe:'todo'" >
                 <h3 class="task-title">{{ task.name }}</h3>  
                 <div class="task-btns">
                     <button class="edit-btn btn">&#9998;</button>

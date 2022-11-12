@@ -17,11 +17,12 @@ import { AlertService } from '../shared/services/alert.service';
 export class BoardPageComponent implements OnInit {
   
   title: string = ''
-
+  board: Board
   statuses = ['todo','in progress','done']
   tasks: Task[] = []
   pSub: Subscription
   type: string = 'todo'
+  searchStr: '';
 
   constructor(
     public modalService: ModalService,
@@ -38,6 +39,7 @@ export class BoardPageComponent implements OnInit {
           return this.boardService.getById(params['id'])
         })
       ).subscribe((board: Board) => {
+        this.board = board
         this.title = board.name
       })
     this.pSub = this.taskService.getAll().subscribe(tasks =>
@@ -51,8 +53,10 @@ export class BoardPageComponent implements OnInit {
     const task: Task ={
       name: val.value.name,
       status: val.value.select,
-      date: new Date()
+      date: new Date(),
+      board: this.board
     }
+    this.boardService.addTask(task, this.board)
     console.log(task)
     this.taskService.create(task).subscribe( () => {
       val.reset()

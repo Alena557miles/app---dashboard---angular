@@ -9,7 +9,36 @@ input{
   text-transform: uppercase;
   background:inherit;
   box-shadow: -9px -8px 23px 0px white, 8px 1px 10px 0px grey;
+ margin-bottom: 2rem;
+    margin-top: 2rem;
 }
+
+.dash{
+  .add-dashboard{
+    align-items: center;
+    display: flex;
+    
+    .btn-dashboard{
+        font-size: 6rem;
+        width: 40%;
+        margin: 0 auto;
+        color: #8c9094;
+        border-radius: 1rem;
+        box-shadow: -9px -8px 23px 0px white, 8px 1px 10px 0px grey;  
+        &:hover{
+            background-color: #c4d7dc;
+            transition: background-color 0.5s ease;
+        }
+        &:active{
+            background-color: #c49bfa;
+            transition: background-color 0.5s ease;
+        } 
+    }
+}
+
+}
+
+
 
 .dashboard{
     display: flex;
@@ -21,30 +50,6 @@ input{
     height: 800px;
     padding-top: 5rem;
 
-    .add-dashboard{
-        width: 20rem;
-        height: 20rem;
-        align-items: center;
-        display: flex;
-        
-        .btn-dashboard{
-            font-size: 10rem;
-            width: 80%;
-            height: 80%;
-            margin: 0 auto;
-            color: #8c9094;
-            border-radius: 1rem;
-            box-shadow: -9px -8px 23px 0px white, 8px 1px 10px 0px grey;  
-            &:hover{
-                background-color: #c4d7dc;
-                transition: background-color 0.5s ease;
-            }
-            &:active{
-                background-color: #c49bfa;
-                transition: background-color 0.5s ease;
-            } 
-        }
-    }
     .card{
         display: flex;
         flex-direction: column;
