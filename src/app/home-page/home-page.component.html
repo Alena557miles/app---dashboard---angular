@@ -5,11 +5,9 @@
     <app-board-item
     *ngFor="let board of boards"
     [board] = "board"
+    [routerLink]="['board', board.id]" 
     >
     </app-board-item>
 
 
 </div>
-<ng-template #loading>
-
-</ng-template>
