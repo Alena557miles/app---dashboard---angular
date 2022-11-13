@@ -1,13 +1,28 @@
+
+<div class="info-wrapper">
+    <p class="info">This application is not ready yet... Because of black out, sirens and because of WAR... 
+        Please, keep it in your mind while using it... I will finishing app as soon as posible, Ill try to do all my best and i'm keeping working every day on this app
+    </p>
+    
+    <p class="info">
+       there will be implemented register/login system, but now to see some services and understand app plese use this data:
+    </p>
+    
+    <p class="info">
+        login: 23@qq.com
+        password:qqqqqq
+    </p>
+</div>
+
 <div class="dashboard"
 *ngIf="boards$ | async as boards">   
 
-    
+
     <app-board-item
     *ngFor="let board of boards"
     [board] = "board"
     [routerLink]="['board', board.id]" 
     >
     </app-board-item>
-
 
 </div>
