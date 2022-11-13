@@ -1,3 +1,23 @@
+.content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 1rem;
+    .form-control{
+        input{
+            height: 2rem;
+            width: 100%;
+            border: 1px solid #81afda;
+            border-radius: 0.4rem;
+            padding-left: 1rem;
+            margin-left: auto;
+            display: block;
+        }
+    }
+}
+
+
 .board-container{
     display: flex;
     flex-direction: row;
@@ -36,7 +56,7 @@
                     transition: background 0.5s ease;
                 }
             }
-    
+
             .task{
                 background:#dfe7ee;
                 display: flex;

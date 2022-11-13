@@ -1,6 +1,8 @@
-<h1> {{ title }}</h1>
-<div class="form-control">
-    <input type="text" placeholder="filter board" [(ngModel)]="searchStr">
+<div class="content">
+    <h1> {{ title | uppercase }}</h1>
+    <div class="form-control">
+        <input type="text" placeholder="search task" [(ngModel)]="searchStr">
+    </div>
 </div>
 <div class="board-container">
     <div class="board-item">
