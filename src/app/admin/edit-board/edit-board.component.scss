@@ -1,22 +1,33 @@
-form{
-    width: 70%;
-    margin-top: 2rem;
-    .form-control{
-        input{
-            height: 40px;
+.form-container{
+    border-radius: 1rem;
+    box-shadow: -9px -8px 23px 0px white, 8px 1px 10px 0px grey; 
+    margin: 5rem auto;
+    width: 80%;
+    form{
+        width: 60%;
+        margin: 0 auto;
+        padding: 3rem;
+
+        .form-control{
+            input{
+                height: 40px;
+                width: 100%;
+                border: 1px solid #81afda;
+                border-radius: 0.4rem;
+                padding-left: 1rem;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        .edit-btn{
+            display: block;
+            height: 3rem;
             width: 100%;
-            border: 1px solid #81afda;
-            border-radius: 0.4rem;
-            padding-left: 1rem;
-            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            background: #d1e0ee;
         }
     }
-    
-    .edit-btn{
-        display: block;
-        height: 3rem;
-        width: 100%;
-        border-radius: 0.5rem;
-        background: #d1e0ee;
-    }
 }
+
+
+
