@@ -61,7 +61,6 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       this.action = 'edit'
       this.boardService.getById(id).subscribe((board: Board) => {
       this.board = board
-      console.log(board)
       return id
     })
   }

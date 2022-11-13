@@ -59,14 +59,20 @@ export class BoardService{
         return this.http.patch<Board>(`${environment.fbDbUrl}/boards/${board.id}.json`,board)
     }
 
-    addTask(task: Task, board:Board){
-        if (board){
-            this.getById(board.id).subscribe((board)=>{
-                board.tasks?.concat(task)
-                this.http.patch<Board>(`${environment.fbDbUrl}/boards/${board.id}.json`,board)
-            })
+    addTask(task: Task, board:Board): Observable<Board>{
+        // if (board){
+        //     this.getById(board.id).subscribe((board)=>{
+        //         board.tasks?.push(task) 
+        //         this.http.patch<Board>(`${environment.fbDbUrl}/boards/${board.id}.json`,board)
+        //     })
             
-        }
+        // }
+
+        this.getById(board.id).subscribe((board)=>{
+                    board.tasks?.push(task) 
+                    
+        })
+        return this.http.patch<Board>(`${environment.fbDbUrl}/boards/${board.id}.json`,board)
     } 
 
 

@@ -4,7 +4,7 @@ export interface Board{
     description: string
     author?: string
     date: Date
-    tasks?: Array<Task>
+    tasks?: Task[]
 }
 
 export type TaskStatus = 'todo' | 'in progress' | 'done'

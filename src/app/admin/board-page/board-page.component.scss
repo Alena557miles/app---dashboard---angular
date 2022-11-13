@@ -1,21 +1,50 @@
-.content{
+.wrapper{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 2rem 1rem;
-    .form-control{
-        input{
-            height: 2rem;
-            width: 100%;
-            border: 1px solid #81afda;
-            border-radius: 0.4rem;
-            padding-left: 1rem;
-            margin-left: auto;
-            display: block;
+    
+    .content{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 28%;
+        padding: 2rem 1rem;
+        .form-control{
+            input{
+                height: 2rem;
+                width: 100%;
+                border: 1px solid #81afda;
+                border-radius: 0.4rem;
+                padding-left: 1rem;
+                margin-left: auto;
+                display: block;
+            }
+        }
+        .sord-btn{
+            button{
+                display: block;
+                height: 2rem;
+                width: 5rem;
+                border-radius: 0.5rem;
+                color: #375264;
+                text-align: center;
+                box-shadow: -9px -8px 23px 0px white, 8px 1px 10px 0px grey;
+                &:hover{
+                    background-color: #c4d7dc;
+                    transition: background-color 0.5s ease;
+                }
+                &:active{
+                    background-color: #c49bfa;
+                    transition: background-color 0.5s ease;
+                }
+            }
         }
     }
 }
+
 
 
 .board-container{

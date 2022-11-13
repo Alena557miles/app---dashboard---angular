@@ -52,9 +52,9 @@ export class TaskService{
     //             })
     //         )
     // }
-    // remove(id: string): Observable<void>{
-    //     return this.http.delete<void>(`${environment.fbDbUrl}/boards/${id}.json`)
-    // }
+    remove(id: string): Observable<void>{
+        return this.http.delete<void>(`${environment.fbDbUrl}/tasks/${id}.json`)
+    }
     // update(board: Board): Observable<Board>{
     //     return this.http.patch<Board>(`${environment.fbDbUrl}/boards/${board.id}.json`,board)
     // }

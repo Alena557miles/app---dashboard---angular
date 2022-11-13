@@ -21,6 +21,7 @@ import { ModalService } from "./shared/services/modal.service";
 import { StatusPipe } from "./shared/pipes/status.pipes";
 import { SearchTaskPipe } from "./shared/pipes/searchTask.pipe";
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { SortByPipe } from "./shared/pipes/asd-desc.pipe";
 
 
 
@@ -39,6 +40,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
         EditBoardComponent,
         AlertComponent,
         NotFoundPageComponent,
+        SortByPipe
     ],
     imports:[
         CommonModule,

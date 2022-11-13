@@ -1,9 +1,18 @@
-<div class="content">
-    <h1> {{ title | uppercase }}</h1>
-    <div class="form-control">
-        <input type="text" placeholder="search task" [(ngModel)]="searchStr">
+
+    <div class="wrapper">
+        <h1> {{ title | uppercase }}</h1>
+        <div class="content">
+            <div class="form-control">
+                <input type="text" placeholder="search task" [(ngModel)]="searchStr">
+            </div>
+            <div class="sord-btn">
+                <button type="button" class="btn" (click)="sortBy('asc')">ASC</button>
+            </div>
+            <div class="sord-btn">
+                <button type="button" class="btn" (click)="sortBy('desc')">DESC</button>
+            </div>
+        </div>
     </div>
-</div>
 <div class="board-container">
     <div class="board-item">
         <h3 class="block-title">todo</h3>
@@ -12,14 +21,16 @@
             class="add-task-btn btn"
             (click)="modalService.open()"
             >+</button>
-            <div class="task"
-            *ngFor="let task of tasks | searchTaskPipe:searchStr | statusPipe:'todo'" >
-                <h3 class="task-title">{{ task.name }}</h3>  
-                <div class="task-btns">
-                    <button class="edit-btn btn">&#9998;</button>
-                    <button class="delete-btn btn">&#8864;</button>
-                    <button class="archive-btn btn">&#9972;</button>
-                </div> 
+            <div *ngIf="tasks?.length">
+                <div class="task"
+                *ngFor="let task of tasks | sortBy:sortByValue| searchTaskPipe:searchStr | statusPipe:'todo'"  >
+                    <h3 class="task-title">{{ task.name }}</h3>  
+                    <div class="task-btns">
+                        <button class="edit-btn btn">&#9998;</button>
+                        <a class="btn-board" (click)="remove(task.id)">&#10006;</a>
+                        <button class="archive-btn btn">&#9972;</button>
+                    </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -30,14 +41,16 @@
             class="add-task-btn btn"
             (click)="modalService.open()"
             >+</button>
-            <div class="task"
-            *ngFor="let task of tasks | searchTaskPipe:searchStr | statusPipe:'in progress'">
-                <h3 class="task-title">{{ task.name }}</h3>  
-                <div class="task-btns">
-                    <button class="edit-btn btn">&#9998;</button>
-                    <button class="delete-btn btn">&#8864;</button>
-                    <button class="archive-btn btn">&#9972;</button>
-                </div> 
+            <div *ngIf="tasks?.length">
+                <div class="task"
+                *ngFor="let task of tasks | sortBy:sortByValue| searchTaskPipe:searchStr | statusPipe:'in progress'">
+                    <h3 class="task-title">{{ task.name }}</h3>  
+                    <div class="task-btns">
+                        <button class="edit-btn btn">&#9998;</button>
+                        <a class="btn-board" (click)="remove(task.id)">&#10006;</a>
+                        <button class="archive-btn btn">&#9972;</button>
+                    </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -48,14 +61,16 @@
             class="add-task-btn btn"
             (click)="modalService.open()"
             >+</button>
-            <div class="task"
-            *ngFor="let task of tasks | searchTaskPipe:searchStr | statusPipe:'done' ">
-                <h3 class="task-title">{{ task.name }}</h3>  
-                <div class="task-btns">
-                    <button class="edit-btn btn">&#9998;</button>
-                    <button class="delete-btn btn">&#8864;</button>
-                    <button class="archive-btn btn">&#9972;</button>
-                </div> 
+            <div *ngIf="tasks?.length">
+                <div class="task"
+                *ngFor="let task of tasks | sortBy:sortByValue| searchTaskPipe:searchStr | statusPipe:'done' ">
+                    <h3 class="task-title">{{ task.name }}</h3>  
+                    <div class="task-btns">
+                        <button class="edit-btn btn">&#9998;</button>
+                        <a class="btn-board" (click)="remove(task.id)">&#10006;</a>
+                        <button class="archive-btn btn">&#9972;</button>
+                    </div> 
+                </div>
             </div>
         </div>
     </div>

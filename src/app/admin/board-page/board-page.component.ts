@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
@@ -12,17 +12,22 @@ import { AlertService } from '../shared/services/alert.service';
 @Component({
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',
-  styleUrls: ['./board-page.component.scss']
+  styleUrls: ['./board-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class BoardPageComponent implements OnInit {
   
+  @Output ()  sortByValue: string ='desc'
+
   title: string = ''
   board: Board
   statuses = ['todo','in progress','done']
   tasks: Task[] = []
   pSub: Subscription
+  dSub: Subscription
   type: string = 'todo'
   searchStr: '';
+
 
   constructor(
     public modalService: ModalService,
@@ -47,7 +52,10 @@ export class BoardPageComponent implements OnInit {
       )
   }
 
-
+  sortBy(text: string): string{
+    console.log(text)
+    return this.sortByValue = text
+  }
 
   submit(val: any){
     const task: Task ={
@@ -56,13 +64,24 @@ export class BoardPageComponent implements OnInit {
       date: new Date(),
       board: this.board
     }
-    this.boardService.addTask(task, this.board)
-    console.log(task)
     this.taskService.create(task).subscribe( () => {
       val.reset()
       this.modalService.close()
       this.alertService.success('Task was created succsessfully')
     })
+    this.boardService.addTask(task, this.board).subscribe((board)=>{
+      console.log(this.board)
+    })
+  }
+
+
+  remove(id: string|undefined) {
+    if (id){
+      this.dSub = this.boardService.remove(id).subscribe(() =>{
+        this.tasks = this.tasks.filter(task => task.id != id)
+        this.alertService.warning(`Task delete successfully`)
+      })
+    }
   }
 
 
