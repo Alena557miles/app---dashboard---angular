@@ -20,6 +20,7 @@ import { AlertService } from "./shared/services/alert.service";
 import { ModalService } from "./shared/services/modal.service";
 import { StatusPipe } from "./shared/pipes/status.pipes";
 import { SearchTaskPipe } from "./shared/pipes/searchTask.pipe";
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 
 
@@ -37,6 +38,7 @@ import { SearchTaskPipe } from "./shared/pipes/searchTask.pipe";
         SearchTaskPipe,
         EditBoardComponent,
         AlertComponent,
+        NotFoundPageComponent,
     ],
     imports:[
         CommonModule,
@@ -51,7 +53,9 @@ import { SearchTaskPipe } from "./shared/pipes/searchTask.pipe";
                     {path:'login', component: LoginPageComponent},
                     {path:'dashboard', component: DashboardPageComponent, canActivate:[AuthGuard]},
                     {path:'board/:id', component: BoardPageComponent, canActivate:[AuthGuard]},
-                    {path:'board/:id/edit', component: EditBoardComponent, canActivate:[AuthGuard]}
+                    {path:'board/:id/edit', component: EditBoardComponent, canActivate:[AuthGuard]},
+                    
+  {path:'**', component: NotFoundPageComponent}
                 ]
             }
         ])
