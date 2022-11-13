@@ -11,7 +11,7 @@
             (click)="modalService.open()"
             >+</button>
             <div class="task"
-            *ngFor="let task of tasks | statusPipe:'todo'" >
+            *ngFor="let task of tasks | searchTaskPipe:searchStr | statusPipe:'todo'" >
                 <h3 class="task-title">{{ task.name }}</h3>  
                 <div class="task-btns">
                     <button class="edit-btn btn">&#9998;</button>
@@ -29,7 +29,7 @@
             (click)="modalService.open()"
             >+</button>
             <div class="task"
-            *ngFor="let task of tasks | statusPipe:'in progress'">
+            *ngFor="let task of tasks | searchTaskPipe:searchStr | statusPipe:'in progress'">
                 <h3 class="task-title">{{ task.name }}</h3>  
                 <div class="task-btns">
                     <button class="edit-btn btn">&#9998;</button>
@@ -47,7 +47,7 @@
             (click)="modalService.open()"
             >+</button>
             <div class="task"
-            *ngFor="let task of tasks | statusPipe:'done' ">
+            *ngFor="let task of tasks | searchTaskPipe:searchStr | statusPipe:'done' ">
                 <h3 class="task-title">{{ task.name }}</h3>  
                 <div class="task-btns">
                     <button class="edit-btn btn">&#9998;</button>

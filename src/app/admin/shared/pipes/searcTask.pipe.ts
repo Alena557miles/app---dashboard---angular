@@ -4,7 +4,7 @@ import { Task } from "src/app/shared/interfaces";
 @Pipe({
     name: 'searchTaskPipe'
 })
-export class SearchPipe implements PipeTransform{
+export class SearchTaskPipe implements PipeTransform{
     transform(tasks: Task[], search = ''): Task[] {
         if (!search.trim()){
             return tasks

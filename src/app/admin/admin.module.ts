@@ -19,6 +19,7 @@ import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from "./shared/services/alert.service";
 import { ModalService } from "./shared/services/modal.service";
 import { StatusPipe } from "./shared/pipes/status.pipes";
+import { SearchTaskPipe } from "./shared/pipes/searcTask.pipe";
 
 
 
@@ -33,6 +34,7 @@ import { StatusPipe } from "./shared/pipes/status.pipes";
         BoardItemComponent,
         SearchPipe,
         StatusPipe,
+        SearchTaskPipe,
         EditBoardComponent,
         AlertComponent,
     ],
