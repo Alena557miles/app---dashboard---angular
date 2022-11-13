@@ -18,7 +18,7 @@ import { EditBoardComponent } from './edit-board/edit-board.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from "./shared/services/alert.service";
 import { ModalService } from "./shared/services/modal.service";
-import { StatusPipe } from "./shared/pipes/done.pipes";
+import { StatusPipe } from "./shared/pipes/status.pipes";
 
 
 
