@@ -13,10 +13,13 @@ import { AlertService } from '../shared/services/alert.service';
 })
 export class EditBoardComponent implements OnInit, OnDestroy {
 
-
-  form:FormGroup
+  // form: FormGroup = new FormGroup ({
+  //   title: new FormControl(''),
+  //   description : new FormControl('')
+  // })
+  form: FormGroup
   board: Board
-  submitted = false
+  public submitted = false
   uSub: Subscription
 
 
@@ -36,8 +39,11 @@ export class EditBoardComponent implements OnInit, OnDestroy {
       this.board = board
       console.log(board)
       this.form = new FormGroup({
-        title: new FormControl(board.title, Validators.required),
-        description: new FormControl(board.description, Validators.required)
+        title: new FormControl( board.title, [
+          Validators.required,
+          Validators.minLength(4),
+        ]),
+        description: new FormControl({value: board.description,disabled: true})
       })
     })
 
