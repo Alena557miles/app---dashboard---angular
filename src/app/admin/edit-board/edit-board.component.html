@@ -2,7 +2,7 @@
 <!-- *ngIf="form" else loading -->
 <div>
     <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="form-control" [ngClass]="{invalid: form.get('title')?.touched && form.get('title')?.invalid}">
+    <div class="form-control">
         <label for="title">Title</label>
         <input  id="title"  type="text" formControlName="title" placeholder="board name">
     </div>

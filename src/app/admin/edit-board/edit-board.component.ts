@@ -56,8 +56,8 @@ export class EditBoardComponent implements OnInit, OnDestroy {
     this.submitted = true
     this.uSub = this.boardService.update({
       ...this.board,
-      title: this.board.title,
-      description: this.board.description,
+      title: this.form.value.title,
+      description: this.form.value.description,
     }).subscribe(() => {
       this.submitted = false
       this.router.navigate(['/admin','dashboard'])
