@@ -46,11 +46,21 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       ).subscribe((board: Board) => {
         this.board = board
         this.title = board.title
-        
+        this.tasks = board.tasks
+        console.log(board.title)
+        this.pSub = this.taskService.getAll().subscribe(tasks =>
+          console.log(tasks)
+    //   this.tasks = tasks.filter((task) => {
+    //     task.board.title == board.title
+    //   })
+        )
       })
-    this.pSub = this.taskService.getAll().subscribe(tasks =>
-      this.tasks = tasks
-      )
+
+    // this.pSub = this.taskService.getAll().subscribe(tasks =>
+    //   this.tasks = tasks.filter((task) => {
+    //     task.board.title == board.title
+    //   })
+    //   )
   }
 
   ngOnDestroy(): void {
@@ -80,6 +90,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       val.reset()
       this.modalService.close()
       this.alertService.success('Task was created succsessfully')
+      console.log(task)
       this.tasks.push(task)
       this.boardService.update({
         ...this.board,

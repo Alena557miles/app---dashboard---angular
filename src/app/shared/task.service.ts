@@ -37,6 +37,7 @@ export class TaskService{
                                         id: key,
                                         date: new Date(response[key].date)
                                     }))
+                                    // .filter(task => task.board.title == title)                           
                         })
                     )
     }
