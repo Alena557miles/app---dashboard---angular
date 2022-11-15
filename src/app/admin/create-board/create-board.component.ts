@@ -42,6 +42,7 @@ export class CreateBoardComponent implements OnInit {
       title: this.form.value.title,
       description: this.form.value.description,
       date: new Date(),
+      tasks: []
     }
     this.boardService.create(board).subscribe( () => {
       this.form.reset()

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
@@ -15,7 +15,7 @@ import { AlertService } from '../shared/services/alert.service';
   styleUrls: ['./board-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class BoardPageComponent implements OnInit {
+export class BoardPageComponent implements OnInit, OnDestroy {
   
   @Output ()  sortByValue: string ='desc'
 
@@ -27,6 +27,7 @@ export class BoardPageComponent implements OnInit {
   dSub: Subscription
   type: string = 'todo'
   searchStr: '';
+  public submitted = false
 
 
   constructor(
@@ -38,7 +39,6 @@ export class BoardPageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
     this.route.params.pipe(
         switchMap((params: Params) => {
           return this.boardService.getById(params['id'])
@@ -46,10 +46,20 @@ export class BoardPageComponent implements OnInit {
       ).subscribe((board: Board) => {
         this.board = board
         this.title = board.title
+        
       })
     this.pSub = this.taskService.getAll().subscribe(tasks =>
       this.tasks = tasks
       )
+  }
+
+  ngOnDestroy(): void {
+    if (this.pSub){
+      this.pSub.unsubscribe()
+    }
+    if (this.dSub){
+      this.dSub.unsubscribe()
+    }
   }
 
   sortBy(text: string): string{
@@ -58,26 +68,35 @@ export class BoardPageComponent implements OnInit {
   }
 
   submit(val: any){
+    this.submitted = true
     const task: Task ={
       name: val.value.name,
       status: val.value.select,
       date: new Date(),
       board: this.board
     }
-    this.taskService.create(task).subscribe( () => {
+
+    this.taskService.create(task).subscribe((task) => {
       val.reset()
       this.modalService.close()
       this.alertService.success('Task was created succsessfully')
-    })
-    this.boardService.addTask(task, this.board).subscribe((board)=>{
-      console.log(this.board)
+      this.tasks.push(task)
+      this.boardService.update({
+        ...this.board,
+        tasks: this.tasks
+      }).subscribe(()=>{
+        this.submitted = false
+      })
+      this.pSub = this.taskService.getAll().subscribe(tasks =>
+        this.tasks = tasks
+        )
     })
   }
 
 
   remove(id: string|undefined) {
     if (id){
-      this.dSub = this.boardService.remove(id).subscribe(() =>{
+      this.dSub = this.taskService.remove(id).subscribe(() =>{
         this.tasks = this.tasks.filter(task => task.id != id)
         this.alertService.warning(`Task delete successfully`)
       })
