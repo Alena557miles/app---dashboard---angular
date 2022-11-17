@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/admin/shared/services/modal.service';
 import { BoardService } from 'src/app/shared/board.service';
@@ -12,9 +12,7 @@ import { AlertService } from '../shared/services/alert.service';
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
   
-  // boards: Board[] = []
-  // public board: Board
-  // form:FormGroup
+  loading: boolean
   pSub: Subscription
   dSub: Subscription
   searchStr: '';
@@ -26,11 +24,10 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    // this.pSub = this.boardService.getAll().subscribe(boards =>
-    //   this.boards = boards
-    //   )
+    this.loading = true
     this.pSub = this.boardService.getAll().subscribe(boards =>
-      console.log(boards)
+      this.loading = false
+      // console.log(boards)
       )
   }
   
