@@ -19,7 +19,7 @@ export class EditBoardComponent implements OnInit, OnDestroy {
   // })
   form: FormGroup
   board: Board
-  public submitted = false
+  submitted = false
   uSub: Subscription
 
 
