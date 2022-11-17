@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
-import { catchError, map,tap, filter } from "rxjs/operators";
+import { catchError, map,tap, filter, delay } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { Task, FbCreateRsponse } from "./interfaces";
 import { ErrorService } from "./services/error.service";
@@ -34,6 +34,7 @@ export class TaskService{
     getAll(title: string): Observable<Task[]>{
         return this.http.get(`${environment.fbDbUrl}/tasks.json`)
                     .pipe(
+                        delay(1000),
                         map((response: {[key: string]: any}) => {
                             return Object
                                     .keys(response)
