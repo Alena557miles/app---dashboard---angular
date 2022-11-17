@@ -29,6 +29,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   type: string = 'todo'
   searchStr: '';
   public submitted = false
+  loading: boolean
 
 
   constructor(
@@ -40,6 +41,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
+    this.loading = true
     this.route.params.pipe(
         switchMap((params: Params) => {
           return this.boardService.getById(params['id'])
@@ -50,11 +52,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         this.tasks = board.tasks
         this.id = board.id
         console.log(board.tasks)
-        this.pSub = this.taskService.getAll(board.title).subscribe(tasks =>
-          console.log(tasks)
-    //   this.tasks = tasks.filter((task) => {
-    //     task.board.title == board.title
-    //   })
+        this.pSub = this.taskService.getAll(board.title).subscribe(() =>
+          this.loading = false
         )
       })
 
@@ -87,12 +86,13 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     this.taskService.create(task).subscribe((task) => {
       val.reset()
       this.modalService.close()
-      this.alertService.success('Task was created succsessfully')
-      console.log(task)
+
+
       this.boardService.update({
         ...this.board,
         tasks: this.taskService.tasks
-      }).subscribe(()=>{
+      }).subscribe(() => {
+        this.alertService.success('Task was created succsessfully')
         this.submitted = false
       })
       // this.pSub = this.taskService.getAll().subscribe(tasks =>

@@ -50,6 +50,7 @@ export class BoardService{
     getById(id: string|undefined): Observable<Board>{
         return this.http.get<Board>(`${environment.fbDbUrl}/boards/${id}.json`)
             .pipe(
+                delay(1500),
                 map((board: Board) => {
                     return{
                         ...board,

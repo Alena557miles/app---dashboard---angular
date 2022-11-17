@@ -27,7 +27,6 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     this.loading = true
     this.pSub = this.boardService.getAll().subscribe(boards =>
       this.loading = false
-      // console.log(boards)
       )
   }
   
