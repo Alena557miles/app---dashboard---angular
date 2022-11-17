@@ -7,10 +7,10 @@
         class="btn btn-dashboard"
         (click)="modalService.open()">+</button>
     </div>
-    <div class="dashboard"  *ngIf="boards?.length" else preloading>
+    <div class="dashboard"  *ngIf="boardService.boards" else preloading>
         <div 
         class="card"
-        *ngFor="let board of boards | searchPipe:searchStr"
+        *ngFor="let board of boardService.boards | searchPipe:searchStr"
         >
             <div 
             class="card-header" 
