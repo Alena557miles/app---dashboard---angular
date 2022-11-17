@@ -105,10 +105,13 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   remove(id: string|undefined) {
     if (id){
       this.dSub = this.taskService.remove(id).subscribe(() =>{
-        // this.boardService.getById(this.board.id)
-        this.tasks = this.tasks.filter(task => task.id != id)
-        
-        this.alertService.warning(`Task delete successfully`)
+        this.taskService.tasks = this.tasks.filter(task => task.id != id)
+        this.boardService.update({
+          ...this.board,
+          tasks: this.taskService.tasks
+        }).subscribe(() => {
+          this.alertService.warning(`Task delete successfully`)
+        })
       })
     }
   }
