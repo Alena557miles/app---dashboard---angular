@@ -13,10 +13,6 @@ import { AlertService } from '../shared/services/alert.service';
 })
 export class EditBoardComponent implements OnInit, OnDestroy {
 
-  // form: FormGroup = new FormGroup ({
-  //   title: new FormControl(''),
-  //   description : new FormControl('')
-  // })
   form: FormGroup
   board: Board
   submitted = false
