@@ -21,6 +21,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   public title: string = ''
   board: Board
+  id: string | undefined= ''
   statuses = ['todo','in progress','done']
   tasks: Task[] = []
   pSub: Subscription
@@ -47,6 +48,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         this.board = board
         this.title = board.title
         this.tasks = board.tasks
+        this.id = board.id
         console.log(board.tasks)
         this.pSub = this.taskService.getAll(board.title).subscribe(tasks =>
           console.log(tasks)
@@ -103,7 +105,9 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   remove(id: string|undefined) {
     if (id){
       this.dSub = this.taskService.remove(id).subscribe(() =>{
+        // this.boardService.getById(this.board.id)
         this.tasks = this.tasks.filter(task => task.id != id)
+        
         this.alertService.warning(`Task delete successfully`)
       })
     }

@@ -1,13 +1,17 @@
 <div class="form-control">
     <input type="text" placeholder="filter board" [(ngModel)]="searchStr">
 </div>
-<div class="dash">
-    <div class="add-dashboard">
+<div *ngIf="loading" class="loader"></div>
+<div class="dash" *ngIf="!loading">
+    <div class="add-dashboard" >
         <button 
         class="btn btn-dashboard"
         (click)="modalService.open()">+</button>
     </div>
-    <div class="dashboard"  *ngIf="boardService.boards" else preloading>
+
+
+
+    <div class="dashboard"  *ngIf="boardService.boards">
         <div 
         class="card"
         *ngFor="let board of boardService.boards | searchPipe:searchStr"
@@ -40,6 +44,3 @@
     </app-modal-board>
 </div>
 
-<ng-template #preloading >
-    <div class="loader">Loading...</div>
-</ng-template>

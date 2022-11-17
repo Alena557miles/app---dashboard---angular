@@ -67,7 +67,6 @@
         .block{
             display: flex;
             flex-direction: column;
-            gap: 13px;
             background-color: #ebf1fa;
             color: #8c9094;
             border-radius: 1rem;
@@ -85,20 +84,28 @@
                     transition: background 0.5s ease;
                 }
             }
-
-            .task{
-                background:#dfe7ee;
+            .tasks-wrarper{
                 display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                height: 5rem;
-                padding: 0 1rem;
-                cursor: pointer;
-    
-                .task-btns{
+                flex-direction: column;
+                gap: 13px;
+
+                .task{
+                    background:#dfe7ee;
                     display: flex;
-                    flex-direction: row;                
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    height: 5rem;
+                    padding: 0 1rem;
+                    cursor: pointer;
+        
+                    .task-btns{
+                        display: flex;
+                        flex-direction: row;                
+                    }
+                }
+                .task:first-child{
+                    margin-top: 1rem;
                 }
             }
         }
