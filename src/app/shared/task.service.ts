@@ -1,9 +1,10 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
+import { catchError, map,tap, filter } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { Task, FbCreateRsponse } from "./interfaces";
+import { ErrorService } from "./services/error.service";
 
 @Injectable({
     providedIn:"root"
@@ -11,8 +12,11 @@ import { Task, FbCreateRsponse } from "./interfaces";
 export class TaskService{
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private errorService: ErrorService
     ){}
+        
+    tasks: Task[] = []
 
     create(task: Task): Observable<Task>{
         return this.http.post<Task>(`${environment.fbDbUrl}/tasks.json`, task)
@@ -23,10 +27,11 @@ export class TaskService{
                     id: response.name,
                     date: new Date(task.date)
                 }
-            })
+            }),
+            tap(task => this.tasks.push(task)),
         )
     }
-    getAll(): Observable<Task[]>{
+    getAll(title: string): Observable<Task[]>{
         return this.http.get(`${environment.fbDbUrl}/tasks.json`)
                     .pipe(
                         map((response: {[key: string]: any}) => {
@@ -37,9 +42,17 @@ export class TaskService{
                                         id: key,
                                         date: new Date(response[key].date)
                                     }))
-                                    // .filter(task => task.board.title == title)                           
-                        })
+                        }),
+                        map((tasks)=>{
+                           return tasks.filter(task => task.board.title == title)
+                        }),
+                        tap(tasks => this.tasks = tasks),
+                        catchError(this.errorHAndler.bind(this))     
                     )
+    }
+    private errorHAndler(error: HttpErrorResponse){
+        this.errorService.handle(error.message)
+        return throwError(() => error.message)
     }
     // getById(id: string): Observable<Board>{
     //     return this.http.get<Board>(`${environment.fbDbUrl}/boards/${id}.json`)

@@ -19,7 +19,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   
   @Output ()  sortByValue: string ='desc'
 
-  title: string = ''
+  public title: string = ''
   board: Board
   statuses = ['todo','in progress','done']
   tasks: Task[] = []
@@ -33,7 +33,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   constructor(
     public modalService: ModalService,
     private alertService: AlertService,
-    private taskService: TaskService,
+    public taskService: TaskService,
     private route: ActivatedRoute,
     private boardService: BoardService,
     ) { }
@@ -47,8 +47,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         this.board = board
         this.title = board.title
         this.tasks = board.tasks
-        console.log(board.title)
-        this.pSub = this.taskService.getAll().subscribe(tasks =>
+        console.log(board.tasks)
+        this.pSub = this.taskService.getAll(board.title).subscribe(tasks =>
           console.log(tasks)
     //   this.tasks = tasks.filter((task) => {
     //     task.board.title == board.title
@@ -56,11 +56,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         )
       })
 
-    // this.pSub = this.taskService.getAll().subscribe(tasks =>
-    //   this.tasks = tasks.filter((task) => {
-    //     task.board.title == board.title
-    //   })
-    //   )
+
   }
 
   ngOnDestroy(): void {
@@ -91,16 +87,15 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       this.modalService.close()
       this.alertService.success('Task was created succsessfully')
       console.log(task)
-      this.tasks.push(task)
       this.boardService.update({
         ...this.board,
-        tasks: this.tasks
+        tasks: this.taskService.tasks
       }).subscribe(()=>{
         this.submitted = false
       })
-      this.pSub = this.taskService.getAll().subscribe(tasks =>
-        this.tasks = tasks
-        )
+      // this.pSub = this.taskService.getAll().subscribe(tasks =>
+      //   this.tasks = tasks
+      //   )
     })
   }
 
