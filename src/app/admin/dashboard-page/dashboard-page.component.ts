@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/admin/shared/services/modal.service';
 import { BoardService } from 'src/app/shared/board.service';
-import { Board } from 'src/app/shared/interfaces';
 import { AlertService } from '../shared/services/alert.service';
 
 @Component({
