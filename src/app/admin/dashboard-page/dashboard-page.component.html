@@ -5,7 +5,7 @@
     <div class="add-dashboard">
         <button 
         class="btn btn-dashboard"
-        (click)="addOption(); modalService.open()">+</button>
+        (click)="modalService.open()">+</button>
     </div>
     <div class="dashboard"  *ngIf="boards?.length" else preloading>
         <div 
@@ -35,11 +35,8 @@
     <app-modal-board 
     title="board"
     *ngIf="modalService.isVisiBle$ | async"
-    [ngSwitch]="action">
-        <app-create-board 
-        *ngSwitchCase="'create'"
-        ></app-create-board>
-        <app-edit-board *ngSwitchCase="'edit'"></app-edit-board>
+    >
+        <app-create-board></app-create-board>
     </app-modal-board>
 </div>
 

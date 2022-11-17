@@ -52,10 +52,6 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  addOption(){
-    this.action = 'create'
-  }
-
   edit(id: string | undefined): string | null {
     if (id) {
       this.action = 'edit'
