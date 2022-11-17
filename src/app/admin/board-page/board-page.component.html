@@ -21,7 +21,7 @@
             class="add-task-btn btn"
             (click)="modalService.open()"
             >+</button>
-            <div *ngIf="taskService.tasks">
+            <div class="tasks-wrarper" *ngIf="taskService.tasks">
                 <div class="task"
                 *ngFor="let task of taskService.tasks | sortBy:sortByValue| searchTaskPipe:searchStr | statusPipe:'todo'"  >
                     <h3 class="task-title">{{ task.name }}</h3>  
@@ -41,7 +41,7 @@
             class="add-task-btn btn"
             (click)="modalService.open()"
             >+</button>
-            <div *ngIf="taskService.tasks">
+            <div class="tasks-wrarper" *ngIf="taskService.tasks">
                 <div class="task"
                 *ngFor="let task of taskService.tasks | sortBy:sortByValue| searchTaskPipe:searchStr | statusPipe:'in progress'">
                     <h3 class="task-title">{{ task.name }}</h3>  
@@ -61,7 +61,7 @@
             class="add-task-btn btn"
             (click)="modalService.open()"
             >+</button>
-            <div *ngIf="taskService.tasks">
+            <div class="tasks-wrarper" *ngIf="taskService.tasks">
                 <div class="task"
                 *ngFor="let task of taskService.tasks | sortBy:sortByValue| searchTaskPipe:searchStr | statusPipe:'done' ">
                     <h3 class="task-title">{{ task.name }}</h3>  
