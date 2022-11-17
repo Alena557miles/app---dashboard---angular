@@ -13,8 +13,6 @@ import { AlertService } from '../shared/services/alert.service';
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
   
-  public action = 'create'
-
   boards: Board[] = []
   public board: Board
   form:FormGroup
@@ -50,17 +48,6 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     if (this.dSub){
       this.dSub.unsubscribe()
     }
-  }
-
-  edit(id: string | undefined): string | null {
-    if (id) {
-      this.action = 'edit'
-      this.boardService.getById(id).subscribe((board: Board) => {
-      this.board = board
-      return id
-    })
-  }
-    return null
   }
 
 }
