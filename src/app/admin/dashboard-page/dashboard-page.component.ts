@@ -13,9 +13,9 @@ import { AlertService } from '../shared/services/alert.service';
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
   
-  boards: Board[] = []
-  public board: Board
-  form:FormGroup
+  // boards: Board[] = []
+  // public board: Board
+  // form:FormGroup
   pSub: Subscription
   dSub: Subscription
   searchStr: '';
@@ -38,7 +38,9 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   remove(id: string|undefined) {
     if (id){
       this.dSub = this.boardService.remove(id).subscribe(() =>{
-        this.boards = this.boards.filter(board => board.id != id)
+        this.pSub = this.boardService.getAll().subscribe(boards =>
+          console.log(boards)
+          )
         this.alertService.warning('Board delete successfully')
       })
     }
