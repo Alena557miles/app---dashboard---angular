@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { catchError, map,tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { Board, Task, FbCreateRsponseBoard } from "./interfaces";
 
@@ -11,8 +11,10 @@ import { Board, Task, FbCreateRsponseBoard } from "./interfaces";
 export class BoardService{
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        // private errorService: ErrorService
     ){}
+    boards: Board[] = []
 
     create(board: Board): Observable<Board>{
         return this.http.post<Board>(`${environment.fbDbUrl}/boards.json`, board)
@@ -23,7 +25,8 @@ export class BoardService{
                     id: response.title,
                     date: new Date(board.date)
                 }
-            })
+            }),
+            tap(board => this.boards.push(board)),
         )
     }
     getAll(): Observable<Board[]>{
@@ -37,7 +40,9 @@ export class BoardService{
                                         id: key,
                                         date: new Date(response[key].date)
                                     }))
-                        })
+                        }),
+                        tap(boards => this.boards = boards),
+                        // catchError(this.errorHAndler.bind(this))
                     )
     }
     getById(id: string|undefined): Observable<Board>{

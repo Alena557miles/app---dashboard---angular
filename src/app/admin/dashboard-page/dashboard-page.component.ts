@@ -22,13 +22,16 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   constructor(
     public modalService: ModalService,
-    private boardService: BoardService,
+    public boardService: BoardService,
     private alertService: AlertService
     ) { }
 
   ngOnInit(): void {
+    // this.pSub = this.boardService.getAll().subscribe(boards =>
+    //   this.boards = boards
+    //   )
     this.pSub = this.boardService.getAll().subscribe(boards =>
-      this.boards = boards
+      console.log(boards)
       )
   }
   
