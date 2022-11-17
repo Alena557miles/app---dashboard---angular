@@ -1,0 +1,19 @@
+.error-wrraper{
+    display: block;
+    text-align: center;
+    background: rgb(181, 132, 132);
+    height: 3rem;
+    line-height: 3rem;
+    position: relative;
+
+    button{
+        position: absolute;
+        top:0.5rem;
+        right: 2rem;
+        background: transparent;
+        border: none;
+        color: antiquewhite;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}

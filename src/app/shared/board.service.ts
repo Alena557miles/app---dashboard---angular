@@ -1,9 +1,10 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { catchError, map,tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { Board, Task, FbCreateRsponseBoard } from "./interfaces";
+import { ErrorService } from "./services/error.service";
 
 @Injectable({
     providedIn:"root"
@@ -12,7 +13,7 @@ export class BoardService{
 
     constructor(
         private http: HttpClient,
-        // private errorService: ErrorService
+        private errorService: ErrorService
     ){}
     boards: Board[] = []
 
@@ -42,7 +43,7 @@ export class BoardService{
                                     }))
                         }),
                         tap(boards => this.boards = boards),
-                        // catchError(this.errorHAndler.bind(this))
+                        catchError(this.errorHAndler.bind(this))
                     )
     }
     getById(id: string|undefined): Observable<Board>{
@@ -57,6 +58,11 @@ export class BoardService{
                 })
             )
     }
+    private errorHAndler(error: HttpErrorResponse){
+        this.errorService.handle(error.message)
+        return throwError(() => error.message)
+    }
+
     remove(id: string): Observable<void>{
         return this.http.delete<void>(`${environment.fbDbUrl}/boards/${id}.json`)
     }
