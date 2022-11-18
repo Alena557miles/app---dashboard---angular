@@ -18,7 +18,7 @@ export class SortByPipe implements PipeTransform {
     transform(value: any[], order : any = '', column: string = ''): any[] {
 
 
-        if(order==='asc'){return value.sort()}
+        if(order==='asc'){return value.sort((a, b) => a.name.localeCompare(b.name))}
         else{return value.sort().reverse();}
 
       // if (value.length <= 1) { return value; } // array with only one item
