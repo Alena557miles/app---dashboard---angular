@@ -6,7 +6,7 @@
                 <input type="text" placeholder="search task" [(ngModel)]="searchStr">
             </div>
             <div class="sord-btn">
-                <button type="button" class="btn" (click)="sortBy('asc')">ASC</button>
+                <button type="button" class="btn"  (click)="sortBy('asc')">ASC</button>
             </div>
             <div class="sord-btn">
                 <button type="button" class="btn" (click)="sortBy('desc')">DESC</button>
@@ -24,7 +24,7 @@
             >+</button>
             <div class="tasks-wrapper" *ngIf="taskService.tasks">
                 <div class="task"
-                *ngFor="let task of taskService.tasks | sortBy:sortByValue| searchTaskPipe:searchStr | statusPipe:'todo'"  >
+                *ngFor="let task of taskService.tasks | statusPipe:statuses[0] | searchTaskPipe:searchStr |  sortBy:sortByValue " >
                     <h3 class="task-title">{{ task.name }}</h3>  
                     <div class="task-btns">
                         <button class="edit-btn btn">&#9998;</button>
@@ -44,7 +44,7 @@
             >+</button>
             <div class="tasks-wrapper" *ngIf="taskService.tasks">
                 <div class="task"
-                *ngFor="let task of taskService.tasks | sortBy:sortByValue| searchTaskPipe:searchStr | statusPipe:'in progress'">
+                *ngFor="let task of taskService.tasks | statusPipe:statuses[1]| searchTaskPipe:searchStr | sortBy:sortByValue ">
                     <h3 class="task-title">{{ task.name }}</h3>  
                     <div class="task-btns">
                         <button class="edit-btn btn">&#9998;</button>
@@ -64,7 +64,7 @@
             >+</button>
             <div class="tasks-wrapper" *ngIf="taskService.tasks">
                 <div class="task"
-                *ngFor="let task of taskService.tasks | sortBy:sortByValue| searchTaskPipe:searchStr | statusPipe:'done' ">
+                *ngFor="let task of taskService.tasks |  statusPipe:statuses[2] | searchTaskPipe:searchStr |  sortBy:sortByValue">
                     <h3 class="task-title">{{ task.name }}</h3>  
                     <div class="task-btns">
                         <button class="edit-btn btn">&#9998;</button>
@@ -79,32 +79,24 @@
 
 <app-modal-board 
 *ngIf="modalService.isVisiBle$ | async">
-    <form #editForm="ngForm"
-    (ngSubmit)="submit(editForm)">
+    <form #createTaskForm="ngForm"
+    (ngSubmit)="submit(createTaskForm)">
         <div class="form-group">
             <label for="name">Task name</label>
-            <input 
-            #name="ngModel"
-            type="text" 
-            name = "name"
-            class="form-controll"
-            placeholder="task name"
-            ngModel
-            required
-            minlength="2"
+            <input  #name="ngModel" type="text" name = "name" class="form-controll" placeholder="task name" ngModel required minlength="2"
             >
         </div>
         <small
-        class="alert"
-        *ngIf="name.invalid && name.touched"
-        >Please fill title field width min length. Now {{ name.value.length }}
+            class="alert"
+            *ngIf="name.invalid && name.touched"
+            >Please fill title field width min length. Now {{ name.value.length }}
         </small>
         <div class="form-group">
-            <select name="select" ngModel>
+            <select name="select" ngModel #select = "ngModel" required="required">
             <option *ngFor="let status of statuses">{{ status }} </option>
             </select>
         </div>
-
+        <!-- [disabled]="name.invalid || select.invalid" -->
         <button
         type="submit"
         class="btn modal-btn"

@@ -73,31 +73,32 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     console.log(text)
     return this.sortByValue = text
   }
+  // description: new FormControl({value: board.description,disabled: true})
 
-  submit(val: any){
+
+  submit(createTaskForm: any){
+    console.log(createTaskForm)
     this.submitted = true
     const task: Task ={
-      name: val.value.name,
-      status: val.value.select,
+      name: createTaskForm.value.name,
+      status: createTaskForm.value.select,
       date: new Date(),
       board: this.board
     }
 
-    this.taskService.create(task).subscribe((task) => {
-      val.reset()
+
+    this.taskService.create(task).subscribe(() => {
+      createTaskForm.reset()
       this.modalService.close()
-
-
       this.boardService.update({
         ...this.board,
         tasks: this.taskService.tasks
       }).subscribe(() => {
-        this.alertService.success('Task was created succsessfully')
         this.submitted = false
       })
-      // this.pSub = this.taskService.getAll().subscribe(tasks =>
-      //   this.tasks = tasks
-      //   )
+      this.pSub = this.taskService.getAll(this.board.title).subscribe(()=>{
+        this.alertService.success('Task was created succsessfully')
+      })
     })
   }
 
