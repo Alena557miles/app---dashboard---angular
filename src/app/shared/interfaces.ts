@@ -12,7 +12,7 @@ export type TaskStatus = 'todo' | 'in progress' | 'done'
 export interface Task{
     id?: string
     name: string
-    status: TaskStatus
+    status: string
     date: Date
     board: Board
 }

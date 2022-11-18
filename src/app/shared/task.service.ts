@@ -69,6 +69,11 @@ export class TaskService{
     // }
     remove(id: string): Observable<void>{
         return this.http.delete<void>(`${environment.fbDbUrl}/tasks/${id}.json`)
+                                .pipe(
+                                    tap(() => {
+                                        this.tasks.filter(task => task.id != id)
+                                    })
+                                )
     }
     // update(board: Board): Observable<Board>{
     //     return this.http.patch<Board>(`${environment.fbDbUrl}/boards/${board.id}.json`,board)
