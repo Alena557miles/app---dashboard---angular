@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { ModalService } from 'src/app/admin/shared/services/modal.service';
@@ -19,16 +18,17 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   
   @Output ()  sortByValue: string ='desc'
 
-  public title: string = ''
+  public title: string = '' 
+  public submitted = false
   board: Board
   id: string | undefined= ''
   statuses = ['todo','in progress','done']
+  status = this.statuses[0]
   tasks: Task[] = []
   pSub: Subscription
   dSub: Subscription
   type: string = 'todo'
   searchStr: '';
-  public submitted = false
   loading: boolean
 
 
@@ -56,8 +56,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
           this.loading = false
         )
       })
-
-
   }
 
   ngOnDestroy(): void {
@@ -70,18 +68,19 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   }
 
   sortBy(text: string): string{
-    console.log(text)
     return this.sortByValue = text
   }
-  // description: new FormControl({value: board.description,disabled: true})
 
+  getStatus(index: number):string{
+    return this.status = this.statuses[index]
+  }
 
   submit(createTaskForm: any){
     console.log(createTaskForm)
     this.submitted = true
     const task: Task ={
       name: createTaskForm.value.name,
-      status: createTaskForm.value.select,
+      status: this.status,
       date: new Date(),
       board: this.board
     }
@@ -117,5 +116,22 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  allowDrop(ev: DragEvent| any) {
+    ev.preventDefault();
+  }
+
+  drag(ev: DragEvent| any) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    console.log("Event. dataTransfer:",ev.dataTransfer)
+    console.log("Event. target.id:",ev.target.id)
+  }
+
+  drop(ev: DragEvent| any) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    console.log(data)
+    ev.target.appendChild(document.getElementById(data));
+  }
 
 }
