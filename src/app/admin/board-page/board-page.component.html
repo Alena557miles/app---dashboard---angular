@@ -53,8 +53,16 @@
                 id="drag1"
                 >
                     <h3 class="task-title">{{ task.name }}</h3>  
+
+                    <div class="correct" *ngIf="editTask">
+                        <input  #name="ngModel" type="text" name = "name" class="form-controll" [(ngModel)]="task.name" required minlength="2" appFocus
+                        >
+                        <button class="save" (click)="saveEditTask()">Save</button>
+                    </div>
+
+
                     <div class="task-btns">
-                        <button class="edit-btn btn">&#9998;</button>
+                        <button class="edit-btn btn" (click)="showEdit()">&#9998;</button>
                         <a class="btn-board" (click)="remove(task.id)">&#10006;</a>
                         <button class="archive-btn btn">&#9972;</button>
                     </div> 

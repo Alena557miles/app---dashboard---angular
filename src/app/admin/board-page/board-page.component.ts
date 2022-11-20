@@ -30,6 +30,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   type: string = 'todo'
   searchStr: '';
   loading: boolean
+  editTask: boolean = false
 
 
   constructor(
@@ -85,7 +86,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       board: this.board
     }
 
-
     this.taskService.create(task).subscribe(() => {
       createTaskForm.reset()
       this.modalService.close()
@@ -116,6 +116,13 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  showEdit(){
+    this.editTask = true
+  }
+
+  saveEditTask(){
+    this.editTask = false
+  }
 
   allowDrop(ev: DragEvent| any) {
     ev.preventDefault();
