@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, Output } from '@
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { ModalService } from 'src/app/admin/shared/services/modal.service';
-import { BoardService } from 'src/app/shared/board.service';
-import { TaskService } from 'src/app/shared/task.service';
+import { BoardService } from 'src/app/shared/services/board.service';
+import { TaskService } from 'src/app/shared/services/task.service';
 import { Board, Task } from '../../shared/interfaces';
 import { AlertService } from '../shared/services/alert.service';
 

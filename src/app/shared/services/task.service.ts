@@ -3,8 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map,tap, filter, delay } from "rxjs/operators";
 import { environment } from "src/environments/environment";
-import { Task, FbCreateRsponse } from "./interfaces";
-import { ErrorService } from "./services/error.service";
+import { Task, FbCreateRsponse } from "../interfaces";
+import { ErrorService } from "./error.service";
 
 @Injectable({
     providedIn:"root"

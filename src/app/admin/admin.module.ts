@@ -23,6 +23,7 @@ import { SearchTaskPipe } from "./shared/pipes/searchTask.pipe";
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { SortByPipe } from "./shared/pipes/asd-desc.pipe";
 import { GlobalErrorComponent } from './global-error/global-error.component';
+import { FocusDirective } from './shared/directives/focus.directive';
 
 
 
@@ -42,7 +43,8 @@ import { GlobalErrorComponent } from './global-error/global-error.component';
         AlertComponent,
         NotFoundPageComponent,
         SortByPipe,
-        GlobalErrorComponent
+        GlobalErrorComponent,
+        FocusDirective
     ],
     imports:[
         CommonModule,

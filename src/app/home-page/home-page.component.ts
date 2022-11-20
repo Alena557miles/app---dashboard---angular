@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModalService } from '../admin/shared/services/modal.service';
-import { BoardService } from '../shared/board.service';
+import { BoardService } from '../shared/services/board.service';
 import { Board } from '../shared/interfaces';
 
 @Component({

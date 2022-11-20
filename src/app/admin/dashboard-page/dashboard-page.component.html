@@ -1,7 +1,7 @@
 <div class="form-control">
     <input type="text" placeholder="filter board" [(ngModel)]="searchStr">
 </div>
-
+<div *ngIf="loading" class="loader"></div>
 <div class="dash" *ngIf="!loading">
     <div class="add-dashboard" >
         <button 
@@ -37,7 +37,7 @@
         </div>
     </div>
     <app-modal-board 
-    title="board"
+    title="create board"
     *ngIf="modalService.isVisiBle$ | async"
     >
         <app-create-board></app-create-board>

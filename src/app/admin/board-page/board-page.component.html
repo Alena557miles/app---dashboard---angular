@@ -91,13 +91,13 @@
     </div>
 </div>
 
-<app-modal-board 
+<app-modal-board title="create task"
 *ngIf="modalService.isVisiBle$ | async">
     <form #createTaskForm="ngForm"
     (ngSubmit)="submit(createTaskForm)">
         <div class="form-group">
-            <label for="name">Task name</label>
-            <input  #name="ngModel" type="text" name = "name" class="form-controll" placeholder="task name" ngModel required minlength="2"
+            <label for="name">Task name:</label>
+            <input  #name="ngModel" type="text" name = "name" class="form-controll" placeholder="enter task name" ngModel required minlength="2" appFocus
             >
         </div>
         <small
