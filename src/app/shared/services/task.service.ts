@@ -51,22 +51,25 @@ export class TaskService{
                         catchError(this.errorHAndler.bind(this))     
                     )
     }
+
     private errorHAndler(error: HttpErrorResponse){
         this.errorService.handle(error.message)
         return throwError(() => error.message)
     }
-    // getById(id: string): Observable<Board>{
-    //     return this.http.get<Board>(`${environment.fbDbUrl}/boards/${id}.json`)
-    //         .pipe(
-    //             map((board: Board) => {
-    //                 return{
-    //                     ...board,
-    //                     id,
-    //                     date: new Date(board.date)
-    //                 }
-    //             })
-    //         )
-    // }
+
+    getById(id: string): Observable<Task>{
+        return this.http.get<Task>(`${environment.fbDbUrl}/tasks/${id}.json`)
+            .pipe(
+                map((task: Task) => {
+                    return{
+                        ...task,
+                        id,
+                        date: new Date(task.date)
+                    }
+                }),
+                catchError(this.errorHAndler.bind(this))   
+            )
+    }
     remove(id: string): Observable<void>{
         return this.http.delete<void>(`${environment.fbDbUrl}/tasks/${id}.json`)
                                 .pipe(
@@ -75,8 +78,16 @@ export class TaskService{
                                     })
                                 )
     }
-    // update(board: Board): Observable<Board>{
-    //     return this.http.patch<Board>(`${environment.fbDbUrl}/boards/${board.id}.json`,board)
-    // }
+    update(task: Task): Observable<Task>{
+        return this.http.patch<Task>(`${environment.fbDbUrl}/tasks/${task.id}.json`,task)
+                        .pipe(
+                            tap((task:Task) =>{
+                             const index = this.tasks.findIndex(x => x.id === task.id)
+                                this.tasks[index] = task
+                                }
+                            ),
+                            catchError(this.errorHAndler.bind(this))
+                        )
+    }
 
 }

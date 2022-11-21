@@ -12,7 +12,7 @@ import { AlertService } from '../shared/services/alert.service';
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',
   styleUrls: ['./board-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  // changeDetection: ChangeDetectionStrategy.Default
 })
 export class BoardPageComponent implements OnInit, OnDestroy {
   
@@ -21,10 +21,11 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   public title: string = '' 
   public submitted = false
   board: Board
+  task: Task
   id: string | undefined= ''
   statuses = ['todo','in progress','done']
   status = this.statuses[0]
-  tasks: Task[] = []
+  // tasks: Task[] = []
   pSub: Subscription
   dSub: Subscription
   type: string = 'todo'
@@ -50,7 +51,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       ).subscribe((board: Board) => {
         this.board = board
         this.title = board.title
-        this.tasks = board.tasks
+        // this.tasks = board.tasks
         this.id = board.id
         console.log(board.tasks)
         this.pSub = this.taskService.getAll(board.title).subscribe(() =>
@@ -83,7 +84,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       name: createTaskForm.value.name,
       status: this.status,
       date: new Date(),
-      board: this.board
+      board: this.board,
+      isArchived: false
     }
 
     this.taskService.create(task).subscribe(() => {
@@ -116,12 +118,31 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  showEdit(){
-    this.editTask = true
-  }
+  // showEdit(id:string){
+  //   this.editTask = true
+  // }
 
-  saveEditTask(){
-    this.editTask = false
+  // saveEditTask(editTaskForm:any){
+  //   console.log(editTaskForm)
+  //     this.taskService.update({
+  //       ...this.task,
+  //       name: editTaskForm.value.name
+  //     }).subscribe(() => {
+  //       this.alertService.success('Task mark up as done')
+  //     })
+  // }
+
+  done(id: string){
+    this.taskService.getById(id).subscribe((task)=>{
+      this.task = task
+      task.isArchived = !task.isArchived
+      this.taskService.update({
+        ...this.task,
+        isArchived: this.task.isArchived
+      }).subscribe(() => {
+        this.alertService.success('Task mark up as done')
+      })
+    })
   }
 
   allowDrop(ev: DragEvent| any) {

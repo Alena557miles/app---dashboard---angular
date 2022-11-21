@@ -101,7 +101,8 @@
         
                     .task-btns{
                         display: flex;
-                        flex-direction: row;                
+                        flex-direction: column;
+                        align-items: center ;                
                     }
                 }
                 .task:first-child{
@@ -136,4 +137,7 @@ select{
     border: 1px solid #81afda;
     border-radius: 0.4rem;
     margin-bottom: 1rem;
+}
+.done{
+    text-decoration: line-through;
 }
