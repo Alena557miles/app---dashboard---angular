@@ -140,7 +140,15 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         ...this.task,
         isArchived: this.task.isArchived
       }).subscribe(() => {
-        this.alertService.success('Task mark up as done')
+        this.boardService.update({
+          ...this.board,
+          tasks: this.taskService.tasks
+        }).subscribe(() => {
+          this.pSub = this.taskService.getAll(this.board.title).subscribe(() =>
+          this.loading = false
+        )
+        this.alertService.success('Success')
+        })
       })
     })
   }
