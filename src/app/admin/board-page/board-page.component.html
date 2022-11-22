@@ -25,11 +25,11 @@
             <div class="tasks-wrapper" *ngIf="taskService.tasks">
                 <div class="task"
                 *ngFor="let task of taskService.tasks | statusPipe:statuses[0] | searchTaskPipe:searchStr |  sortBy:sortByValue " >
-                    <h3 class="task-title">{{ task.name }}</h3>  
+                <h3 class="{{ (task.isArchived) ? 'done' : '' }}">{{ task.name }}</h3>  
                     <div class="task-btns">
                         <button class="edit-btn btn">&#9998;</button>
                         <a class="btn-board" (click)="remove(task.id)">&#10006;</a>
-                        <button class="archive-btn btn">🗃️</button>
+                        <button class="archive-btn btn" (click)="done(task.id)" >🗃️</button>
                     </div> 
                 </div>
             </div>
@@ -89,11 +89,11 @@
                 (dragstart)="drag($event)" 
                 id="drag1"
                 >
-                    <h3 class="task-title">{{ task.name }}</h3>  
+                <h3 class="{{ (task.isArchived) ? 'done' : '' }}">{{ task.name }}</h3>  
                     <div class="task-btns">
                         <button class="edit-btn btn" >&#9998;</button>
                         <a class="btn-board" (click)="remove(task.id)">&#10006;</a>
-                        <button class="archive-btn btn">🗃️</button>
+                        <button class="archive-btn btn" (click)="done(task.id)" >🗃️</button>
                     </div> 
                 </div>
             </div>
