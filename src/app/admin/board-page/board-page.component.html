@@ -53,17 +53,7 @@
                 id="drag1"
                 >
                     <h3 class="{{ (task.isArchived) ? 'done' : '' }}">{{ task.name }}</h3>  
-                    <!-- <form class="correct" 
-                        *ngIf="editTask" 
-                        #editTaskForm="ngForm"
-                        (ngSubmit)="saveEditTask(editTaskForm)"
-                    >
-                        <input  #name="ngModel" type="text" name = "name" class="form-controll" [(ngModel)]="task.name" required minlength="2" appFocus
-                        >
-                        <button class="save">Save</button>
-                    </form> -->
                     <div class="task-btns">
-                        <!-- <button class="edit-btn btn" (click)="showEdit(task.id)">&#9998;</button> -->
                         <button class="edit-btn btn">&#9998;</button>
                         <a class="btn-board" (click)="remove(task.id)">&#10006;</a>
                         <button class="archive-btn btn" (click)="done(task.id)" >🗃️</button>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { ModalService } from 'src/app/admin/shared/services/modal.service';
@@ -12,7 +12,6 @@ import { AlertService } from '../shared/services/alert.service';
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',
   styleUrls: ['./board-page.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.Default
 })
 export class BoardPageComponent implements OnInit, OnDestroy {
   
@@ -117,20 +116,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       })
     }
   }
-
-  // showEdit(id:string){
-  //   this.editTask = true
-  // }
-
-  // saveEditTask(editTaskForm:any){
-  //   console.log(editTaskForm)
-  //     this.taskService.update({
-  //       ...this.task,
-  //       name: editTaskForm.value.name
-  //     }).subscribe(() => {
-  //       this.alertService.success('Task mark up as done')
-  //     })
-  // }
 
   done(id: string){
     this.taskService.getById(id).subscribe((task)=>{
