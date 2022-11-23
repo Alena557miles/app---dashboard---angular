@@ -150,7 +150,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   drop(ev: DragEvent| any) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    console.log(data)
+    console.log(ev)
+    console.log(ev.target.id)
     ev.target.appendChild(document.getElementById(data));
   }
 

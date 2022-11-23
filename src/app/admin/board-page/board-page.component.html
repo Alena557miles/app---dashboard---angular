@@ -22,14 +22,14 @@
             class="add-task-btn btn"
             (click)="modalService.open(); getStatus(0)"
             >+</button>
-            <div class="tasks-wrapper" *ngIf="taskService.tasks"
+            <div class="tasks-wrapper" *ngIf="taskService.tasks" id="{{statuses[0]}}"
             (drop)="drop($event)" 
             (dragover)="allowDrop($event)">
                 <div class="task"
                 *ngFor="let task of taskService.tasks | statusPipe:statuses[0] | searchTaskPipe:searchStr |  sortBy:sortByValue " 
                 draggable="true" 
                 (dragstart)="drag($event)" 
-                id="drag1">
+                id="drag0">
                 <h3 class="{{ (task.isArchived) ? 'done' : '' }}">{{ task.name }}</h3>  
                     <div class="task-btns">
                         <button class="edit-btn btn">&#9998;</button>
@@ -47,7 +47,7 @@
             class="add-task-btn btn"
             (click)="modalService.open(); getStatus(1)"
             >+</button>
-            <div class="tasks-wrapper" *ngIf="taskService.tasks" 
+            <div class="tasks-wrapper" *ngIf="taskService.tasks" id="{{statuses[1]}}"
             (drop)="drop($event)" 
             (dragover)="allowDrop($event)"
             >
@@ -74,7 +74,7 @@
             class="add-task-btn btn"
             (click)="modalService.open(); getStatus(2)"
             >+</button>
-            <div class="tasks-wrapper" *ngIf="taskService.tasks"
+            <div class="tasks-wrapper" *ngIf="taskService.tasks" id="{{statuses[2]}}"
             (drop)="drop($event)" 
             (dragover)="allowDrop($event)"
             >
@@ -82,7 +82,7 @@
                 *ngFor="let task of taskService.tasks | statusPipe:statuses[2] | searchTaskPipe:searchStr |  sortBy:sortByValue"
                 draggable="true" 
                 (dragstart)="drag($event)" 
-                id="drag1"
+                id="drag2"
                 >
                 <h3 class="{{ (task.isArchived) ? 'done' : '' }}">{{ task.name }}</h3>  
                     <div class="task-btns">
