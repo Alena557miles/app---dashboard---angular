@@ -8,7 +8,7 @@ import { ModalService } from 'src/app/admin/shared/services/modal.service';
 })
 export class ModalBoardComponent implements OnInit {
   
-  title: string = 'create'
+  @Input() title: string 
 
   constructor(public modalService: ModalService) { }
 

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/admin/shared/services/modal.service';
-import { BoardService } from 'src/app/shared/board.service';
+import { BoardService } from 'src/app/shared/services/board.service';
 import { AlertService } from '../shared/services/alert.service';
 
 @Component({

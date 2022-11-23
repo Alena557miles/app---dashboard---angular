@@ -15,6 +15,7 @@ export interface Task{
     status: string
     date: Date
     board: Board
+    isArchived:boolean
 }
 
 export interface User {

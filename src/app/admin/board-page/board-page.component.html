@@ -22,14 +22,19 @@
             class="add-task-btn btn"
             (click)="modalService.open(); getStatus(0)"
             >+</button>
-            <div class="tasks-wrapper" *ngIf="taskService.tasks">
+            <div class="tasks-wrapper" *ngIf="taskService.tasks" id="{{statuses[0]}}"
+            (drop)="drop($event)" 
+            (dragover)="allowDrop($event)">
                 <div class="task"
-                *ngFor="let task of taskService.tasks | statusPipe:statuses[0] | searchTaskPipe:searchStr |  sortBy:sortByValue " >
-                    <h3 class="task-title">{{ task.name }}</h3>  
+                *ngFor="let task of taskService.tasks | statusPipe:statuses[0] | searchTaskPipe:searchStr |  sortBy:sortByValue " 
+                draggable="true" 
+                (dragstart)="drag($event)" 
+                id="drag0">
+                <h3 class="{{ (task.isArchived) ? 'done' : '' }}">{{ task.name }}</h3>  
                     <div class="task-btns">
                         <button class="edit-btn btn">&#9998;</button>
                         <a class="btn-board" (click)="remove(task.id)">&#10006;</a>
-                        <button class="archive-btn btn">&#9972;</button>
+                        <button class="archive-btn btn" (click)="done(task.id)" >🗃️</button>
                     </div> 
                 </div>
             </div>
@@ -42,7 +47,7 @@
             class="add-task-btn btn"
             (click)="modalService.open(); getStatus(1)"
             >+</button>
-            <div class="tasks-wrapper" *ngIf="taskService.tasks" 
+            <div class="tasks-wrapper" *ngIf="taskService.tasks" id="{{statuses[1]}}"
             (drop)="drop($event)" 
             (dragover)="allowDrop($event)"
             >
@@ -52,11 +57,11 @@
                 (dragstart)="drag($event)" 
                 id="drag1"
                 >
-                    <h3 class="task-title">{{ task.name }}</h3>  
+                    <h3 class="{{ (task.isArchived) ? 'done' : '' }}">{{ task.name }}</h3>  
                     <div class="task-btns">
                         <button class="edit-btn btn">&#9998;</button>
                         <a class="btn-board" (click)="remove(task.id)">&#10006;</a>
-                        <button class="archive-btn btn">&#9972;</button>
+                        <button class="archive-btn btn" (click)="done(task.id)" >🗃️</button>
                     </div> 
                 </div>
             </div>
@@ -69,21 +74,21 @@
             class="add-task-btn btn"
             (click)="modalService.open(); getStatus(2)"
             >+</button>
-            <div class="tasks-wrapper" *ngIf="taskService.tasks"
+            <div class="tasks-wrapper" *ngIf="taskService.tasks" id="{{statuses[2]}}"
             (drop)="drop($event)" 
             (dragover)="allowDrop($event)"
             >
                 <div class="task"
-                *ngFor="let task of taskService.tasks |  statusPipe:statuses[2] | searchTaskPipe:searchStr |  sortBy:sortByValue"
+                *ngFor="let task of taskService.tasks | statusPipe:statuses[2] | searchTaskPipe:searchStr |  sortBy:sortByValue"
                 draggable="true" 
                 (dragstart)="drag($event)" 
-                id="drag1"
+                id="drag2"
                 >
-                    <h3 class="task-title">{{ task.name }}</h3>  
+                <h3 class="{{ (task.isArchived) ? 'done' : '' }}">{{ task.name }}</h3>  
                     <div class="task-btns">
                         <button class="edit-btn btn" >&#9998;</button>
                         <a class="btn-board" (click)="remove(task.id)">&#10006;</a>
-                        <button class="archive-btn btn">&#9972;</button>
+                        <button class="archive-btn btn" (click)="done(task.id)" >🗃️</button>
                     </div> 
                 </div>
             </div>
@@ -91,13 +96,13 @@
     </div>
 </div>
 
-<app-modal-board 
+<app-modal-board title="create task"
 *ngIf="modalService.isVisiBle$ | async">
     <form #createTaskForm="ngForm"
     (ngSubmit)="submit(createTaskForm)">
         <div class="form-group">
-            <label for="name">Task name</label>
-            <input  #name="ngModel" type="text" name = "name" class="form-controll" placeholder="task name" ngModel required minlength="2"
+            <label for="name">Task name:</label>
+            <input  #name="ngModel" type="text" name = "name" class="form-controll" placeholder="enter task name" ngModel required minlength="2" appFocus
             >
         </div>
         <small

@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
-import { BoardService } from 'src/app/shared/board.service';
+import { BoardService } from 'src/app/shared/services/board.service';
 import { Board } from 'src/app/shared/interfaces';
 import { AlertService } from '../shared/services/alert.service';
 

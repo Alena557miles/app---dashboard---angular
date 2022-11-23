@@ -3,6 +3,6 @@ class="overflow"
 (click)="modalService.close()"
 ></div>
 <div class="modal">
-    <h1 class="modal-title">{{ title }}</h1>
+    <h1 class="modal-title">{{ title  | uppercase }}</h1>
     <ng-content></ng-content>
 </div>

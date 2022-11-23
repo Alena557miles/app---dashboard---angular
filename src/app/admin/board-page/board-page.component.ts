@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { ModalService } from 'src/app/admin/shared/services/modal.service';
-import { BoardService } from 'src/app/shared/board.service';
-import { TaskService } from 'src/app/shared/task.service';
+import { BoardService } from 'src/app/shared/services/board.service';
+import { TaskService } from 'src/app/shared/services/task.service';
 import { Board, Task } from '../../shared/interfaces';
 import { AlertService } from '../shared/services/alert.service';
 
@@ -12,7 +12,6 @@ import { AlertService } from '../shared/services/alert.service';
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',
   styleUrls: ['./board-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
 })
 export class BoardPageComponent implements OnInit, OnDestroy {
   
@@ -21,15 +20,17 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   public title: string = '' 
   public submitted = false
   board: Board
+  task: Task
   id: string | undefined= ''
   statuses = ['todo','in progress','done']
   status = this.statuses[0]
-  tasks: Task[] = []
+  // tasks: Task[] = []
   pSub: Subscription
   dSub: Subscription
   type: string = 'todo'
   searchStr: '';
   loading: boolean
+  editTask: boolean = false
 
 
   constructor(
@@ -49,7 +50,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       ).subscribe((board: Board) => {
         this.board = board
         this.title = board.title
-        this.tasks = board.tasks
         this.id = board.id
         console.log(board.tasks)
         this.pSub = this.taskService.getAll(board.title).subscribe(() =>
@@ -82,9 +82,9 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       name: createTaskForm.value.name,
       status: this.status,
       date: new Date(),
-      board: this.board
+      board: this.board,
+      isArchived: false
     }
-
 
     this.taskService.create(task).subscribe(() => {
       createTaskForm.reset()
@@ -116,6 +116,26 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  done(id: string){
+    this.taskService.getById(id).subscribe((task)=>{
+      this.task = task
+      task.isArchived = !task.isArchived
+      this.taskService.update({
+        ...this.task,
+        isArchived: this.task.isArchived
+      }).subscribe(() => {
+        this.boardService.update({
+          ...this.board,
+          tasks: this.taskService.tasks
+        }).subscribe(() => {
+          this.pSub = this.taskService.getAll(this.board.title).subscribe(() =>
+          this.loading = false
+        )
+        this.alertService.success('Success')
+        })
+      })
+    })
+  }
 
   allowDrop(ev: DragEvent| any) {
     ev.preventDefault();
@@ -130,7 +150,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   drop(ev: DragEvent| any) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    console.log(data)
+    console.log(ev)
+    console.log(ev.target.id)
     ev.target.appendChild(document.getElementById(data));
   }
 
