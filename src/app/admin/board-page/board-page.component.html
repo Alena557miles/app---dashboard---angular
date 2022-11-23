@@ -22,9 +22,14 @@
             class="add-task-btn btn"
             (click)="modalService.open(); getStatus(0)"
             >+</button>
-            <div class="tasks-wrapper" *ngIf="taskService.tasks">
+            <div class="tasks-wrapper" *ngIf="taskService.tasks"
+            (drop)="drop($event)" 
+            (dragover)="allowDrop($event)">
                 <div class="task"
-                *ngFor="let task of taskService.tasks | statusPipe:statuses[0] | searchTaskPipe:searchStr |  sortBy:sortByValue " >
+                *ngFor="let task of taskService.tasks | statusPipe:statuses[0] | searchTaskPipe:searchStr |  sortBy:sortByValue " 
+                draggable="true" 
+                (dragstart)="drag($event)" 
+                id="drag1">
                 <h3 class="{{ (task.isArchived) ? 'done' : '' }}">{{ task.name }}</h3>  
                     <div class="task-btns">
                         <button class="edit-btn btn">&#9998;</button>

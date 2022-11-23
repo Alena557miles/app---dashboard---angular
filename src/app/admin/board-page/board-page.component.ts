@@ -50,7 +50,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       ).subscribe((board: Board) => {
         this.board = board
         this.title = board.title
-        // this.tasks = board.tasks
         this.id = board.id
         console.log(board.tasks)
         this.pSub = this.taskService.getAll(board.title).subscribe(() =>
